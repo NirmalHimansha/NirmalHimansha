@@ -1,7 +1,6 @@
 - 👋 Hi, I’m @NirmalHimansha
 - 👀 I’m interested in Network Engineering
 - 🌱 I’m currently learning at Univercity Of Colombo
-- 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me https://www.instagram.com/n.himansha/
 
 <!---
