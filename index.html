@@ -2,136 +2,86 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="computer studies,higher education, computer engineering, computer science , computer classes, BIT, UCSC, BIT UCSC, bit ucsc, bit class, bit institute, USCS, BIT pastpapers, bit vle notes, bit semester 1, bit semester 2, bit semester 3, bit best results, esoft, matrix, university of colombo, java, php, codeignitor, hibernate, javafx, software engineering, earth, Nirmal, Himansha, nirmalhimansha, IT, Networking, Computer, hardware, CSS, JavaScript">
-    <title>Nirmal Himansha</title>
-    <header>
-        <div class="header">
-            <h1>Day to day <span style="color: black;">TECH</span> tips</h1>
-            <p>Posted by Nirmal Himansha</p>
-        </div>
-    </header>
-    <div class="navbar">
-        <a href="#home">Home</a>
-        <a href="#news">News</a>
-        <div class="dropdown">
-            <button class="dropbtn">Contact Me <i class="fa fa-caret-down"></i></button>
-            <div class="dropdown-content">
-                <a href="mailto:nirmalhimansha@gmail.com">Email</a>
-                <a href="https://www.instagram.com/n.himansha/"> Instagram</a>
-                <a href="https://wa.me/+94767022971">Whatsapp</a>
-                <a href="https://lk.linkedin.com/in/nirmal-himansha-17a062190">Linkedin</a>
-            </div>
-        </div>
-    </div>
+
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://notthebe.ee/rss.xml">
+
+    <meta charset="utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="computer studies,higher education, computer engineering, computer science , computer classes, BIT, UCSC, BIT UCSC, bit ucsc, bit class, bit institute, USCS, BIT pastpapers, bit vle notes, bit semester 1, bit semester 2, bit semester 3, bit best results, esoft, matrix, university of colombo, java, php, codeignitor, hibernate, javafx, software engineering, earth, Nirmal, Himansha, nirmalhimansha, IT, Networking, Computer, hardware, CSS, JavaScript">
+    <title>Nirmal&#x27;s Blog</title>
+    <link rel="stylesheet" href="TestPage.css" />
+    <link rel="shortcut icon" type="image/png" href="wolf_4081853.png" />
+    <script src="https://kit.fontawesome.com/93866eaaa9.js" crossorigin="anonymous"></script>
 </head>
-<style>
-    .dropdown-content {
-        background-color: #528a8a;
-    }
 
-    .header {
-        padding: 3px;
-        text-align: center;
-        background: #1abc9c;
-        color: white;
-        font-size: 20px;
-    }
-
-    .navbar {
-        overflow: hidden;
-        background-color: #333;
-        font-family: Arial;
-    }
-
-    .navbar a {
-        float: left;
-        font-size: 16px;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-    }
-
-    .dropdown {
-        float: left;
-        overflow: hidden;
-    }
-
-    .dropdown .dropbtn {
-        font-size: 16px;
-        border: none;
-        outline: none;
-        color: white;
-        padding: 14px 16px;
-        background-color: inherit;
-        font-family: inherit;
-        margin: 0;
-    }
-
-    .navbar a:hover,
-    .dropdown:hover .dropbtn {
-        background-color: red;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-    }
-
-    .dropdown-content a {
-        float: none;
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        text-align: left;
-    }
-
-    .dropdown-content a:hover {
-        background-color: #ddd;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-</style>
+<nav class="menu">
+    <div class="nav-left">
+        <ul>
+            <li>
+                <a href="/"><img class="logo" src="wolf_4081853.png" alt="" /><span class="sitename">Nirmal&#x27;s
+                        blog</span></a>
+            </li>
+        </ul>
+    </div>
+    <div class="nav-right">
+        <ul>
+            <li class="icons">
+                <!--  <a
+                title="RSS feed"
+              class="fas fa-rss"
+              href="https://notthebe.ee/rss.xml"
+            ></a>
+           
+            <a
+                title="Dark mode"
+              id="darkmodetoggle"
+              class="fas fa-moon"
+              onclick="switchTheme()"
+            ></a>
+             -->
+                <a id="toggle-nav" onclick="toggleNav()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </li>
+        </ul>
+        <ul id="links">
+            <li><a href="mailto:itsupport@paradisetoys.biz">Email</a></li>
+            <li><a href="https://www.instagram.com/n.himansha/"> Instagram</a></li>
+            <li><a href="https://wa.me/+94767022971">Whatsapp</a></li>
+            <li><a href="https://lk.linkedin.com/in/nirmal-himansha-17a062190">Linkedin</a></li>
+        </ul>
+    </div>
+</nav>
 
 <body>
-    <h2>About Me</h2>
-    <p>I'm passionate about Networking and HomeLab testing. I bring ideas to life. If you want to know
-        about me feel free to contact me <a href="#contact"> Get in Touch</a></p>
+    <section class="section">
+        <div class="container">
+            <h2 class="title">Hey there!</h2>
+            <p>
+                My Name is Nirmal Himansha. I work as an Assistant IT Manager in Paradise Toys Wattala.
+            </p>
 
-    <!-- <div id="about"  style="width: fit-content; height: fit-content; border: 2px solid rgb(3, 3, 107); padding: 10px;">
+            <h2 id="Articles">Articles</h2>
+            <ul class="articles">
+
+
         </div>
-        -->
+    </section>
 
-    <!--<pre>
-            /etc/apache2/
-            |-- apache2.conf
-            |       `--  ports.conf
-            |-- mods-enabled
-            |       |-- *.load
-            |       `-- *.conf
-            |-- conf-enabled
-            |       `-- *.conf
-            |-- sites-enabled
-            |       `-- *.conf
-                      </pre>
 
-                    -->
 
-    <div id="contact">
-        <h2>Contact Me</h2>
-        <p>Let's work together! Feel free to reach out:</p>
-        <a href="mailto:nirmalhimansha@gmail.com">nirmalhimansha@gmail.com</a> |
-        <a href="https://www.instagram.com/n.himansha/"> instagram</a> |
-        <a href="https://wa.me/+94767022971">Whatsapp</a>
-    </div>
+    <footer>
+        <p>Powered by <a target="_blank">Zola</a></p>
+        <p><a href="/impressum">Imprint</a> · <a href="/privacy">Privacy</a></p>
+    </footer>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="TestPageDark.js" crossorigin="anonymous"></script>
+    <script src="TestPage.js" crossorigin="anonymous"></script>
+
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'8ba15dcd9c26513a',t:'MTcyNDgxNzMzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
 
 </html>
