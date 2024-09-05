@@ -25,10 +25,15 @@ body {
     line-height: 1.5em;
     padding: 1em;
     margin: auto;
-    max-width: 52em;
-    background-color: rgba(255, 255, 255, 0.829);
+    max-width: 60%;
+    background-color: rgba(228, 226, 240, 0.5);
 }
-
+div.VideoInstructions{
+    text-align: center;
+}
+div.iframe{
+    text-align: center;
+}
 a {
     color: var(--link);
     text-decoration: none
@@ -457,10 +462,4 @@ footer {
     display: flex;
     justify-content: space-between;
     font-size: 13px
-}
-iframe{
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
 }
