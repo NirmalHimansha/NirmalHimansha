@@ -13,6 +13,9 @@ html {
 .logo {
     max-height: 30px
 }
+#sitename{
+    font-weight: bold;
+}
 
 body {
     color: var(--fg);
@@ -95,6 +98,9 @@ h5 {
 
 h6 {
     font-size: .9em
+}
+div.VideoInstructions h2{
+    font-size: 30px;
 }
 
 blockquote {
@@ -293,6 +299,9 @@ nav {
     align-items: center;
     justify-content: space-between
 }
+#links{
+    font-weight: bold;
+}
 
 nav ul {
     margin: 0;
@@ -418,6 +427,23 @@ p.date {
     color: var(--fg)
 }
 
+video {
+    width: 560px;
+    height: 315px;
+}
+
+.VideoInstructions>div {
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.VideoInstructions {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0.2em;
+    grid-auto-rows: 200px, auto;
+
+}
 ul.articles {
     list-style: none;
     padding: 0
@@ -431,4 +457,10 @@ footer {
     display: flex;
     justify-content: space-between;
     font-size: 13px
+}
+iframe{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
