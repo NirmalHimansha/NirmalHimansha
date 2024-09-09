@@ -17,7 +17,7 @@ html {
 }
 body {
   color: var(--fg);
-  font-family: "PT Serif", "Garamond", "Georgia", serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   word-break: break-word;
   line-height: 1.5em;
