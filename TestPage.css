@@ -365,13 +365,13 @@ width: 22%}
     page-break-after: avoid;
   }
 }
-div.BITDoccuments a{
+div.BITDocuments a{
   text-decoration: none;
   background-color: rgb(100, 141, 151);
   border: 2px solid transparent;
   border-radius: 5px;
 }
-div.BITDoccuments a:hover{
+div.BITDocuments a:hover{
   text-decoration: none;
   background-color:aquamarine;
   border: 2px solid #000000;
