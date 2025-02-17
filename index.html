@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="keywords"
-    content="computer studies,higher education, computer engineering, computer science , 
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords"
+        content="computer studies,higher education, computer engineering, computer science , 
         computer classes, BIT, UCSC, BIT UCSC, bit ucsc, bit class, bit institute, USCS, BIT pastpapers, 
         bit vle notes, bit semester 1, bit semester 2, bit semester 3, bit best results, esoft, matrix, 
         university of colombo, java, php, codeignitor, hibernate, javafx, software engineering, earth, 
@@ -24,196 +24,478 @@
         Data science, Internet of Things, IoT, Cybersecurity, Data security, IT automation, Digital transformation, Blockchain technology, 
         IT support, Network security, Computer systems, Web development, HTML tutorials, CSS tutorials, JavaScript tutorials, Front-end development, 
         Back-end development, Full-stack development, Web design trends, Responsive web design, UI/UX design, Web performance optimization, Mobile-first design, Progressive web apps" />
-  <title>Nirmal&#x27;s Blog</title>
-  <link rel="stylesheet" href="TestPage.css" />
-  <link rel="shortcut icon" type="image/png" href="wolf_4081853.png" />
-  <script src="https://kit.fontawesome.com/93866eaaa9.js" crossorigin="anonymous"></script>
+    <title>Nirmal&#x27;s Blog</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/png" href="wolf_4081853.png" />
+    <script defer src="script.js"></script>
+    <style>
+        /* General Styles */
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #fff;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        .light-theme {
+            background-color: #f4f4f4;
+            color: #121212;
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s;
+            z-index: 1000;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        /* Sections */
+        section {
+            padding-top: 100px;
+            text-align: center;
+            min-height: 100px;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 20px;
+            text-align: center;
+            min-height: 100px;
+        }
+
+        div.aboutme {
+            text-align: justify;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to right, #1e3b7260, #45546e63);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 10;
+            transform: translateY(20px);
+            transition: opacity 1s, transform 1s;
+        }
+
+
+
+        .slide-up {
+            opacity: 10;
+            transform: translateY(40px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .parallax {
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        div.VideoInstructions {
+            text-align: center;
+        }
+
+        div.VideoInstructions h2 {
+            font-size: 30px;
+        }
+
+        .VideoInstructions>div {
+            padding-left: 20px;
+            padding-bottom: 10px;
+        }
+
+        .VideoInstructions {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 0.2em;
+            grid-auto-rows: 200px, auto;
+        }
+
+        video {
+            width: 100%;
+            height: 500px;
+        }
+
+        div.iframe {
+            text-align: center;
+        }
+
+        /* Animated Cards */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            width: 300px;
+            padding: 20px;
+            background: #222;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s ease-in-out;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .card:hover {
+            transform: scale(1);
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            padding: 10px;
+            background: #f39c12;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+    </style>
 </head>
 
-<body>
-  <header>
-
-  </header>
-  <nav class="menu">
-    <div class="nav-left">
-      <ul>
-        <li>
-          <p>
-            <img class="logo" src="wolf_4081853.png" alt="" /><span class="sitename" id="sitename">Nirmal&#x27;s
-              blog</span>
-          </p>
-        </li>
-      </ul>
+<body class="dark-theme">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
     </div>
-    <div class="nav-right">
-      <ul>
-        <li class="icons">
-          <!--  <a
-                title="RSS feed"
-              class="fas fa-rss"
-              href="https://notthebe.ee/rss.xml"
-            ></a>
-           
-            <a
-                title="Dark mode"
-              id="darkmodetoggle"
-              class="fas fa-moon"
-              onclick="switchTheme()"
-            ></a>
-             -->
-          <a id="toggle-nav" onclick="toggleNav()">
-            <i class="fa fa-bars"></i>
-          </a>
-        </li>
-      </ul>
-      <ul id="links">
-        <li>
-          <a href="mailto:nirmalhimansha@gmail.com" id="contact">Email</a>
-        </li>
-        <li>
-          <a href="https://www.instagram.com/n.himansha/"> Instagram</a>
-        </li>
-        <li>
-          <a href="https://lk.linkedin.com/in/nirmal-himansha-17a062190">Linkedin</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <section class="section">
-    <div class="container">
-      <h2 class="title">Hey there!</h2>
-      <!--
-         <p>
-          My Name is Nirmal Himansha. I work as an Assistant IT Manager in
-          Paradise Toys Wattala.
-        </p>
-        -->
-      <p>
-        Welcome to my corner of the internet! I'm Nirmal Himansha, a web developer and technology enthusiast with a
-        knack for creating practical, tech-driven solutions. My work often blends functionality with innovation,
-        especially on my personal website, where I showcase my favorite projects.
-        <br><br>
-        Beyond web development, I’m deeply passionate about homelab setups. I run various self-hosted services like
-        Jellyfin, AdGuard, Home Assistant, Immich, and Pi-hole, constantly experimenting with new ways to optimize my
-        digital environment. This hands-on approach allows me to explore cutting-edge tech while continuously learning
-        and improving my setup.
-        <br><br>
-        My journey in IT Administration started 2021, and since then, I have had the opportunity to work on a wide range
-        of projects. From such as installing OS to managing whole IT infastructure, I thrive on turning ideas into
-        reality.
-        <br><br>
-        Outside of work, I enjoy HomeLABing, self-hosting my servers which helps me stay inspired and bring creativity
-        to my professional endeavors. Whether I'm tring it for myself or exploring the latest tech trends, I'm always
-        looking for new ways to grow and challenge myself.
-        <br><br>
-        Feel free to reach out to me if you'd like to collaborate on a project, discuss an idea, or just say hi! Want to
-        know more check out</a>
-        <a href="Nirmal Himansha.pdf" target="_blank" id="CV">My CV</a>
-      </p>
-      <h2 class="bit">BIT Helping Documents</h2>
-      <p class="BitData">
-        If you are following BIT in Colombo University these will help you. Please use these as a helping material and
-        don't miss use
-      </p>
-      <br>
-      <div class="BITDocuments">
-        <a href="https://1drv.ms/f/s!AhjY7rbs6dAtimNOA0v-D7Sw_YX-?e=hTQYsO" target="_blank">Get the Files</a>
-      </div>
-      <div class="techDoc">
-        <p>Here I have added some of the tweaking tools for various purposes use them wisely, I do not take responsibility any of your mistakes <br><a href="https://1drv.ms/f/c/2dd0e9ecb6eed818/EiX0e8veAVxGkwk73cfDwT8BBqdIgEDy6EVsJcepUkDTrw?e=GX3Xfm">Link</a></p>
 
-      </div>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Nirmal Himansha</div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="mailto:nirmalhimansha@gmail.com">Contact</a></li>
+            <li><a href="https://www.instagram.com/n.himansha/"> Instagram</a></li>
+            <li><a href="https://lk.linkedin.com/in/nirmal-himansha-17a062190">Linkedin</a> </li>
+        </ul>
+        <div id="dark">
+            <button id="theme-toggle"><i id="theme-icon">🌙</i></button>
+        </div>
 
-      </div>
-      <p>
-      <h3>Disclaimer</h3>
-      The content provided on this article includes materials that are not owned by Your Company. All trademarks,
-      copyrights,
-      and other intellectual property rights belong to their respective owners. The use of such materials is for
-      informational and educational purposes only.
+    </nav>
 
+    <!-- Hero Section -->
+    <section id="hero" class="hero parallax" style="background-image: url(2059795.jpeg);">
+        <div class="hero-content">
+            <h1>Hi, I'm Nirmal Himansha</h1>
+            <code>IT Administrator | WEB Developer | Photographer | Technology enthusiast</code>
+            <p>A passionate homelab enthusiast, self-hosting advocate, and aspiring developer. I build, optimize, and
+                experiment with technology to create seamless digital experiences.</p>
+        </div>
+    </section>
 
-      If you are the owner of any content appearing on this article and wish to have it removed, please contact me <a
-        href="mailto:nirmalhimansha@gmail.com" id="contact">Email</a> ,
-      and I will promptly address your concerns.
-      </p>
+    <!-- About Me Section -->
+    <section id="about" class="about slide-up parallax">
+        <h2>About Me</h2>
+        <div id="aboutme">
+            <p>
+                Welcome to my corner of the internet! I'm Nirmal Himansha, a web developer and technology enthusiast
+                with a
+                knack for creating practical, tech-driven solutions. My work often blends functionality with innovation,
+                especially on my personal website, where I showcase my favorite projects.
 
-      <!--
-           <form action="https://1drv.ms/f/s!AhjY7rbs6dAtimNOA0v-D7Sw_YX-?e=hTQYsO" target="_blank">
-            <input type="submit" value="Get the Files" />
+                Beyond web development, I’m deeply passionate about homelab setups. I run various self-hosted services
+                like
+                Jellyfin, AdGuard, Home Assistant, Immich, and Pi-hole, constantly experimenting with new ways to
+                optimize
+                my
+                digital environment. This hands-on approach allows me to explore cutting-edge tech while continuously
+                learning
+                and improving my setup.
+                My journey in IT Administration started 2021, and since then, I have had the opportunity to work on a
+                wide
+                range
+                of projects. From such as installing OS to managing whole IT infastructure, I thrive on turning ideas
+                into
+                reality.
+                Outside of work, I enjoy HomeLABing, self-hosting my servers which helps me stay inspired and bring
+                creativity
+                to my professional endeavors. Whether I'm tring it for myself or exploring the latest tech trends, I'm
+                always
+                looking for new ways to grow and challenge myself.
+                Feel free to reach out to me if you'd like to collaborate on a project, discuss an idea, or just say hi!
+                Want to
+                know more check out</a>
+                <a href="Nirmal Himansha.pdf" target="_blank" id="CV">My CV</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Section with Animated Cards -->
+    <section id="projects" class="projects fade-in">
+        <h1>Projects</h1>
+        <div class="card-container">
+            <div class="card">
+                <h2>BIT Helping Documents</h2>
+                <p class="BitData">
+                    If you are following BIT in Colombo University these will help you. Please use these as a helping
+                    material and
+                    don't miss use
+                </p>
+                <div class="BITDocuments">
+                    <a href="https://1drv.ms/f/s!AhjY7rbs6dAtimNOA0v-D7Sw_YX-?e=hTQYsO" target="_blank">Get the
+                        Files</a>
+                    <h3>Disclaimer</h3>
+                    The content provided on this article includes materials that are not owned by Your Company. All
+                    trademarks,
+                    copyrights,
+                    and other intellectual property rights belong to their respective owners. The use of such materials
+                    is
+                    for
+                    informational and educational purposes only.
+                    <br>
+                    If you are the owner of any content appearing on this article and wish to have it removed, please
+                    contact me <a href="mailto:nirmalhimansha@gmail.com" id="contact">Email</a> ,
+                    and I will promptly address your concerns.
+                    </p>
+                </div>
+
+            </div>
+            <div class="card">
+                <h2>IT Support Software</h2>
+                <p>Here I have added some of the tweaking tools for various purposes use them wisely, I do not take
+                    responsibility any of your mistakes <br><a
+                        href="https://1drv.ms/f/c/2dd0e9ecb6eed818/EiX0e8veAVxGkwk73cfDwT8BBqdIgEDy6EVsJcepUkDTrw?e=GX3Xfm">Link</a>
+                </p>
+            </div>
+
+            <!-- <div class="card">Project 3</div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam corrupti mollitia voluptatum sequi
+                assumenda? Animi eum aut reprehenderit nobis sed repudiandae dolor cum repellat. Blanditiis nesciunt
+                amet maiores voluptate perferendis!</p>
+                -->
+        </div>
+    </section>
+    <section>
+        <H1>Tutorials</H1>
+        <div class="VideoInstructions">
+            <div>
+                <h2>Video Size Reduce Instruction</h2>
+                <span class="VideoReduce"><a href="https://handbrake.fr/downloads.php">Handbrake Download</a></span>
+                <span class="VideoReduce"><a href="https://www.videolan.org/vlc/">VLC Download</a></span>
+                <br />
+                <video class="video" controls>
+                    <source src="Video size reduce.mkv" />
+                </video>
+            </div>
+            <div>
+                <h2>Photo Size Reduce</h2>
+                <span class="irfanview"><a href="https://www.irfanview.com/main_download_engl.htm">IrfanView</a></span>
+                <br />
+                <video class="video" controls>
+                    <source src="Photo Reduce.mp4" />
+                </video>
+            </div>
+            <div>
+                <h2>How to Create Proper Password</h2>
+                <video controls>
+                    <source src="How to pick a proper password.mp4" />
+                </video>
+            </div>
+            <div>
+                <h2>How to Install MS SQL Server Developer edition</h2>
+                <video class="video" controls>
+                    <source src="Sql Installation.mp4" />
+                </video>
+            </div>
+            <div>
+                <h2>How to Restore SQL Database</h2>
+                <video class="video" controls>
+                    <source src="Database Restore.mp4" />
+                </video>
+            </div>
+            <div>
+                <h2>PDF Edit</h2>
+                <span class="pdf24"><a href="https://tools.pdf24.org/en/all-tools">PDF24</a></span>
+                <br />
+                <video class="video" controls>
+                    <source src="PDF Edit.mp4" />
+                </video>
+            </div>
+        </div>
+
+    </section>
+    <!--
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form class="contact-form" id="contactForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
         </form>
-        -->
-      <!--
-           <div class="box-1">
-            <div class="btn btn-one">
-              <a href="https://1drv.ms/f/s!AhjY7rbs6dAtimNOA0v-D7Sw_YX-?e=hTQYsO">Doc</a>
+    </section>
+    -->
+    <section>
+        <footer>
+            <div id="contact" class="iframe">
+                <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSfaZKC3w3I39UTIFfzfLw0ajwpR8RbENxftxOWFKo6zUK9LNg/viewform?embedded=true"
+                    width="640" height="480" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
             </div>
-          </div>
-          -->
+        </footer>
+    </section>
 
-      <br>
-      <h2 id="Articles">Tutorials</h2>
-      <div class="VideoInstructions">
-        <div>
-          <h2>Video Size Reduce Instruction</h2>
-          <span class="VideoReduce"><a href="https://handbrake.fr/downloads.php">Handbrake Download</a></span>
-          <span class="VideoReduce"><a href="https://www.videolan.org/vlc/">VLC Download</a></span>
-          <br />
-          <video class="video" controls>
-            <source src="Video size reduce.mkv" />
-          </video>
-        </div>
-        <div>
-          <h2>Photo Size Reduce</h2>
-          <span class="irfanview"><a href="https://www.irfanview.com/main_download_engl.htm">IrfanView</a></span>
-          <br />
-          <video class="video" controls>
-            <source src="Photo Reduce.mp4" />
-          </video>
-        </div>
-        <div>
-          <h2>How to Create Proper Password</h2>
-          <video controls>
-            <source src="How to pick a proper password.mp4" />
-          </video>
-        </div>
-        <div>
-          <h2>How to Install MS SQL Server Developer edition</h2>
-          <video class="video" controls>
-            <source src="Sql Installation.mp4" />
-          </video>
-        </div>
-        <div>
-          <h2>How to Restore SQL Database</h2>
-          <video class="video" controls>
-            <source src="Database Restore.mp4" />
-          </video>
-        </div>
-        <div>
-          <h2>PDF Edit</h2>
-          <span class="pdf24"><a href="https://tools.pdf24.org/en/all-tools">PDF24</a></span>
-          <br />
-          <video class="video" controls>
-            <source src="PDF Edit.mp4" />
-          </video>
-        </div>
-      </div>
-      <!--<div class="test1">
-                <embed src="USB.pdf" type="application/pdf" class="pdf" width="100%" height="600px">
-            </div>
-            -->
-    </div>
-  </section>
-  <footer>
-    <div class="iframe">
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSfaZKC3w3I39UTIFfzfLw0ajwpR8RbENxftxOWFKo6zUK9LNg/viewform?embedded=true"
-        width="640" height="480" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    </div>
-  </footer>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-  <script src="TestPageDark.js" crossorigin="anonymous"></script>
-  <script src="TestPage.js" crossorigin="anonymous"></script>
+    <script>
+        // Preloader
+        window.addEventListener("load", () => {
+            document.getElementById("preloader").style.opacity = "0";
+            setTimeout(() => { document.getElementById("preloader").style.display = "none"; }, 500);
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = document.getElementById("theme-icon");
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("light-theme");
+            themeIcon.textContent = document.body.classList.contains("light-theme") ? "☀️" : "🌙";
+        });
+
+
+        // Scroll Animations
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        });
+        document.querySelectorAll(".fade-in, .slide-up").forEach(el => observer.observe(el));
+    </script>
 </body>
 
 </html>
