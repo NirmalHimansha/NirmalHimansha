@@ -34,7 +34,7 @@ button{
     padding: 30px;
     position: fixed;
     top: 0;
-    width: 96%;
+    width: 98%;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
     z-index: 100;
@@ -80,6 +80,22 @@ button{
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px;
+        position: fixed;
+        top: 0;
+        width: 95%;
+        height: fit-content;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        z-index: 100;
+    }
+    .mainbody{
+        padding-top: 100px;
+    }
     .nav-links {
         display: none;
         flex-direction: column;
