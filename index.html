@@ -46,6 +46,17 @@
             color: #121212;
         }
         /* Navbar */
+        nav img{
+            max-width: 30px;
+            max-height: 30px;
+        }
+        button{
+            background-color: #121212;
+            color: #121212;
+            border-radius: 5px;
+            box-shadow: none;
+            padding: 5px;
+        }
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -53,13 +64,17 @@
             padding: 30px;
             position: fixed;
             top: 0;
-            width: 98%;
+            width: 96%;
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(5px);
             z-index: 100;
         }
 
         .nav-links {
+            list-style: none;
+            display: flex;
+        }
+        .nav-links.active {
             list-style: none;
             display: flex;
         }
@@ -86,6 +101,12 @@
             border: none;
             color: white;
             cursor: pointer;
+            position: absolute;
+            left: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .menu-toggle.active {
+            transform: rotate(90deg);
         }
 
         @media (max-width: 768px) {
@@ -97,15 +118,17 @@
                 right: 0;
                 background: rgba(0, 0, 0, 0.9);
                 width: 100%;
-                text-align: center;
+                text-align: left;
             }
-
             .nav-links.active {
                 display: flex;
             }
 
             .menu-toggle {
-                display: block;
+                display:flex;
+            }
+            .logo {
+                margin-left: 20px; /* Adjusted for mobile */
             }
         }
 
@@ -267,10 +290,7 @@
             cursor: pointer;
             color: white;
         }
-        nav img{
-            max-width: 30px;
-            max-height: 30px;
-        }
+
     </style>
 </head>
 
@@ -462,6 +482,13 @@
 -->
 
     <script>
+        // Navbar Toggle
+        function toggleMenu() {
+            const menu = document.querySelector('.nav-links');
+            const toggle = document.querySelector('.menu-toggle');
+            menu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
         // Preloader
         window.addEventListener("load", () => {
             document.getElementById("preloader").style.opacity = "0";
