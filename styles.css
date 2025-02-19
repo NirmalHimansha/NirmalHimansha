@@ -251,65 +251,45 @@ div.iframe {
   background-image: url('1155075.png');
   /* Change to your image */
   height: 200px;
+  width: 100%;
+  border-radius: 10px;
   background-attachment: fixed;
   background-position: center;
   background-repeat: repeat;
   background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  font-size: 30px;
-  font-weight: bold;
 }
 .parallax2 {
-  background-image: url('1155075.jpg');
+  background-image: url('1155075.png');
   /* Change to your image */
   height: 300px;
+  width: 100%;
+  border-radius: 10px;
   background-attachment: fixed;
   background-position: center;
   background-repeat: repeat;
   background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  font-size: 30px;
-  font-weight: bold;
 }
 .parallax3 {
-  background-image: url('1155075.jpg');
+  background-image: url('1155075.png');
   /* Change to your image */
   height: 400px;
+  width: 100%;
+  border-radius: 10px;
   background-attachment: fixed;
   background-position: center;
   background-repeat: repeat;
   background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  font-size: 30px;
-  font-weight: bold;
 }
 .parallax4 {
-  background-image: url('1155075.jpg');
+  background-image: url('1155075.png');
   /* Change to your image */
   height: 400px;
+  width: 100%;
+  border-radius: 10px;
   background-attachment: fixed;
   background-position: center;
   background-repeat: repeat;
   background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  font-size: 30px;
-  font-weight: bold;
 }
 
 .light-theme .parallax1 {
