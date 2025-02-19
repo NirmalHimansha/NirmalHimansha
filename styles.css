@@ -11,6 +11,9 @@ body {
   transition: background 0.5s, color 0.5s;
 }
 
+h1{
+  font-size: 35px; 
+}
 .light-theme {
   background-color: #f4f4f4;
   color: #121212;
