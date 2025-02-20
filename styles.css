@@ -293,11 +293,27 @@ div.iframe {
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   transform: scale(0.9);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s;
   color: white;
   text-align: center;
   font-size: 18px;
   font-weight: bold;
+}
+.progress-bar {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  height: 10px;
+  margin-top: 10px;
+}
+.light-theme .progress-bar{
+  background: #c9c7c7;
+}
+.progress {
+  height: 10px;
+  background: #ffcc00;
+  width: 0;
 }
 .skill-card:hover {
   transform: scale(1.1);
