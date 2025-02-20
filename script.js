@@ -16,7 +16,7 @@
         const themeIcon = document.getElementById("theme-icon");
         themeToggle.addEventListener("click", () => {
             document.body.classList.toggle("light-theme");
-            themeIcon.textContent = document.body.classList.contains("light-theme") ? "🌙" : "☀️";
+            themeIcon.textContent = document.body.classList.contains("light-theme") ? "🌚" : "🌞";
         });
         // Scroll Animation
         const observer = new IntersectionObserver(entries => {
