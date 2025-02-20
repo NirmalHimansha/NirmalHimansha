@@ -6,14 +6,11 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #121212;
+  background-color: #000000;
   color: #fff;
   transition: background 0.5s, color 0.5s;
 }
 
-h1{
-  font-size: 35px; 
-}
 .light-theme {
   background-color: #f4f4f4;
   color: #121212;
@@ -24,11 +21,12 @@ nav img {
   max-height: 30px;
 }
 button {
-  background-color: #121212;
-  color: #121212;
+  background-color: #000000;
+  color: #000000;
   border-radius: 5px;
   box-shadow: none;
-  padding: 5px;
+  padding: 8px;
+  margin-right: 45px;
 }
 .navbar {
   display: flex;
@@ -37,7 +35,7 @@ button {
   padding: 30px;
   position: fixed;
   top: 0;
-  width: 98%;
+  width: 100%;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(5px);
   z-index: 100;
@@ -90,8 +88,9 @@ button {
     padding: 30px;
     position: fixed;
     top: 0;
-    width: 95%;
+    width: 100%;
     height: fit-content;
+    transition: transform 0.3s ease-in-out;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
     z-index: 100;
@@ -227,31 +226,32 @@ div.iframe {
 }
 
 /* Parallax Effect */
-.bgimg-1, .bgimg-2, .bgimg-3 {
-    position: relative;
-    opacity: 0.65;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  
-  }
-  .bgimg-1 {
-    background-image: url("img_parallax.jpg");
-    min-height: 100%;
-  }
-  
-  .bgimg-2 {
-    background-image: url("img_parallax2.jpg");
-    min-height: 400px;
-  }
-  
-  .bgimg-3 {
-    background-image: url("img_parallax3.jpg");
-    min-height: 400px;
-  }
+.bgimg-1,
+.bgimg-2,
+.bgimg-3 {
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bgimg-1 {
+  background-image: url("img_parallax.jpg");
+  min-height: 100%;
+}
+
+.bgimg-2 {
+  background-image: url("img_parallax2.jpg");
+  min-height: 400px;
+}
+
+.bgimg-3 {
+  background-image: url("img_parallax3.jpg");
+  min-height: 400px;
+}
 .parallax1 {
-  background-image: url('1155075.jpg');
+  background-image: url("1155075.png");
   /* Change to your image */
   height: 200px;
   width: 100%;
@@ -262,7 +262,7 @@ div.iframe {
   background-size: cover;
 }
 .parallax2 {
-  background-image: url('1155075.jpg');
+  background-image: url("1155075.png");
   /* Change to your image */
   height: 300px;
   width: 100%;
@@ -273,7 +273,7 @@ div.iframe {
   background-size: cover;
 }
 .parallax3 {
-  background-image: url('1155075.jpg');
+  background-image: url("1155075.png");
   /* Change to your image */
   height: 400px;
   width: 100%;
@@ -284,7 +284,7 @@ div.iframe {
   background-size: cover;
 }
 .parallax4 {
-  background-image: url('1155075.jpg');
+  background-image: url("1155075.png");
   /* Change to your image */
   height: 400px;
   width: 100%;
@@ -294,18 +294,26 @@ div.iframe {
   background-repeat: repeat;
   background-size: cover;
 }
+a{
+  text-decoration: none;
+  color: rgb(47, 0, 255);
+  font-weight: bold;
+}
+h1{
+  font-size: 35px; 
+}
 
 .light-theme .parallax1 {
-  background-image: url('02.png');
+  background-image: url("02.png");
 }
 .light-theme .parallax2 {
-  background-image: url('02.png');
+  background-image: url("02.png");
 }
 .light-theme .parallax3 {
-  background-image: url('02.png');
+  background-image: url("02.png");
 }
 .light-theme .parallax4 {
-  background-image: url('02.png');
+  background-image: url("02.png");
 }
 
 /* Contact Form */
@@ -336,9 +344,4 @@ div.iframe {
   border-radius: 5px;
   cursor: pointer;
   color: white;
-}
-a{
-  text-decoration: none;
-  color: rgb(47, 0, 255);
-  font-weight: bold;
 }
