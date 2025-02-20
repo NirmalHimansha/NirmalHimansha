@@ -5,12 +5,6 @@
             menu.classList.toggle('active');
             toggle.classList.toggle('active');
         }
-        // Preloader
-        window.addEventListener("load", () => {
-            document.getElementById("preloader").style.opacity = "0";
-            setTimeout(() => { document.getElementById("preloader").style.display = "none"; }, 500);
-        });
-
         // Theme Toggle
         const themeToggle = document.getElementById("theme-toggle");
         const themeIcon = document.getElementById("theme-icon");
