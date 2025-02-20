@@ -31,14 +31,25 @@ nav img {
   max-width: 30px;
   max-height: 30px;
 }
-button {
-  background-color: #000000;
-  color: #000000;
-  border-radius: 5px;
-  box-shadow: none;
-  padding: 8px;
-  margin-right: 45px;
-}
+  button{
+    margin-right: 45px;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: rgb(0, 0, 0);
+    font-size: 24px; /* Adjust size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Makes it circular */
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+    padding: 5px;
+    vertical-align: middle;
+
+  }
 .navbar {
   display: flex;
   justify-content: space-between;
