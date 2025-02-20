@@ -1,7 +1,6 @@
 # 💫 About Me:
 ## Hi there <br><br>Here are some ideas to get you started:<br><br>- 🔭 I’m currently working on My Home Lab<br>- 🌱 I’m currently learning about financial discipline <br>- 📫 How to reach me: Go to my website
 
-
 ## 🌐 Socials:
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/n.himansha) 
 
