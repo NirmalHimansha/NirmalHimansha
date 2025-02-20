@@ -1,3 +1,4 @@
+
 /* General Styles */
 body {
   background-image: -moz-linear-gradient(90deg, #1e3b72 0%, #45546e 100%);
@@ -15,6 +16,16 @@ body {
   background-color: #f4f4f4;
   color: #121212;
 }
+
+a {
+  text-decoration: none;
+  color: rgb(47, 0, 255);
+  font-weight: bold;
+}
+h1 {
+  font-size: 35px;
+}
+
 /* Navbar */
 nav img {
   max-width: 30px;
@@ -163,6 +174,13 @@ div.aboutme {
   transform: translateY(40px);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
+/*
+.VideoInstructions {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0.2em;
+  grid-auto-rows: 200px, auto;
+}
 
 div.VideoInstructions {
   text-align: center;
@@ -177,18 +195,12 @@ div.VideoInstructions h2 {
   padding-bottom: 10px;
 }
 
-.VideoInstructions {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 0.2em;
-  grid-auto-rows: 200px, auto;
-}
 
 video {
   width: 100%;
   height: 500px;
 }
-
+*/
 div.iframe {
   text-align: center;
 }
@@ -225,30 +237,6 @@ div.iframe {
 }
 
 /* Parallax Effect */
-.bgimg-1,
-.bgimg-2,
-.bgimg-3 {
-  position: relative;
-  opacity: 0.65;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.bgimg-1 {
-  background-image: url("img_parallax.jpg");
-  min-height: 100%;
-}
-
-.bgimg-2 {
-  background-image: url("img_parallax2.jpg");
-  min-height: 400px;
-}
-
-.bgimg-3 {
-  background-image: url("img_parallax3.jpg");
-  min-height: 400px;
-}
 .parallax1 {
   background-image: url("1155075.jpg");
   /* Change to your image */
@@ -285,7 +273,7 @@ div.iframe {
 .parallax4 {
   background-image: url("1155075.jpg");
   /* Change to your image */
-  height: 400px;
+  height: 600px;
   width: 100%;
   border-radius: 10px;
   background-attachment: fixed;
@@ -330,43 +318,4 @@ div.iframe {
   .light-theme .parallax4 {
     background-image: url("M02.jpg");
   }
-}
-
-a {
-  text-decoration: none;
-  color: rgb(47, 0, 255);
-  font-weight: bold;
-}
-h1 {
-  font-size: 35px;
-}
-
-/* Contact Form */
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  max-width: 500px;
-  margin: 0 auto;
-  background: #222;
-  padding: 30px;
-  border-radius: 10px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-}
-
-.contact-form button {
-  padding: 10px;
-  background: #f39c12;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  color: white;
 }
