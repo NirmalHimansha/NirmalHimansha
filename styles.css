@@ -240,9 +240,26 @@ div.iframe {
 .card:hover {
   transform: scale(1);
 }
+.light-theme .card{
+  width: 300px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(134, 134, 134, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s ease-in-out;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+
+}
 
 @media (max-width: 768px) {
   .card {
+    width: 90%;
+  }
+  .light-theme .card{
     width: 90%;
   }
 }
