@@ -222,7 +222,6 @@ div.iframe {
   flex-wrap: wrap;
   gap: 30px;
 }
-
 .card {
   width: 300px;
   padding: 30px;
@@ -236,8 +235,10 @@ div.iframe {
   font-size: 18px;
   font-weight: bold;
 }
-
 .card:hover {
+  transform: scale(1);
+}
+.light-theme .card:hover {
   transform: scale(1);
 }
 .light-theme .card{
