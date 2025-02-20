@@ -79,7 +79,6 @@ button {
 .menu-toggle.active {
   transform: rotate(90deg);
 }
-
 @media (max-width: 768px) {
   .navbar {
     display: flex;
@@ -294,15 +293,6 @@ div.iframe {
   background-repeat: repeat;
   background-size: cover;
 }
-a{
-  text-decoration: none;
-  color: rgb(47, 0, 255);
-  font-weight: bold;
-}
-h1{
-  font-size: 35px; 
-}
-
 .light-theme .parallax1 {
   background-image: url("02.png");
 }
@@ -314,6 +304,41 @@ h1{
 }
 .light-theme .parallax4 {
   background-image: url("02.png");
+}
+@media (max-width: 768px) {
+  .parallax1 {
+    background-image: url("M01.jpg");
+  }
+  .parallax2 {
+    background-image: url("M01.jpg");
+  }
+  .parallax3 {
+    background-image: url("M01.jpg");
+  }
+  .parallax4 {
+    background-image: url("M01.jpg");
+  }
+  .light-theme .parallax1 {
+    background-image: url("M02.jpg");
+  }
+  .light-theme .parallax2 {
+    background-image: url("M02.jpg");
+  }
+  .light-theme .parallax3 {
+    background-image: url("M02.jpg");
+  }
+  .light-theme .parallax4 {
+    background-image: url("M02.jpg");
+  }
+}
+
+a {
+  text-decoration: none;
+  color: rgb(47, 0, 255);
+  font-weight: bold;
+}
+h1 {
+  font-size: 35px;
 }
 
 /* Contact Form */
