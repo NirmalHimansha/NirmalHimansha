@@ -235,10 +235,8 @@ div.iframe {
   font-size: 18px;
   font-weight: bold;
 }
+
 .card:hover {
-  transform: scale(1);
-}
-.light-theme .card:hover {
   transform: scale(1);
 }
 .light-theme .card{
@@ -253,7 +251,9 @@ div.iframe {
   text-align: center;
   font-size: 18px;
   font-weight: bold;
-
+}
+.light-theme .card:hover {
+  transform: scale(1);
 }
 
 @media (max-width: 768px) {
@@ -262,6 +262,12 @@ div.iframe {
   }
   .light-theme .card{
     width: 90%;
+  }
+  .card:hover {
+    transform: scale(1);
+  }
+  .light-theme .card:hover {
+    transform: scale(1);
   }
 }
 
