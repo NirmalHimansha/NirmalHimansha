@@ -24,4 +24,9 @@
         document.querySelectorAll(".hidden").forEach(section => {
             observer.observe(section);
         });
-
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".progress").forEach(bar => {
+                let progress = bar.getAttribute("data-progress");
+                bar.style.width = progress;
+            });
+        });
