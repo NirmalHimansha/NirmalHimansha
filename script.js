@@ -5,6 +5,14 @@
             menu.classList.toggle('active');
             toggle.classList.toggle('active');
         }
+        // Placeholder
+        window.addEventListener("load", function() {
+            document.getElementById("preloader").classList.add("hidden");
+            setTimeout(() => {
+                document.getElementById("preloader").style.display = "none";
+            }, 500);
+        });
+        
         // Theme Toggle
         const themeToggle = document.getElementById("theme-toggle");
         const themeIcon = document.getElementById("theme-icon");
@@ -24,6 +32,7 @@
         document.querySelectorAll(".hidden").forEach(section => {
             observer.observe(section);
         });
+        //Progress Bar
         document.addEventListener("DOMContentLoaded", function() {
             document.querySelectorAll(".progress").forEach(bar => {
                 let progress = bar.getAttribute("data-progress");
