@@ -4,7 +4,7 @@
             const toggle = document.querySelector('.menu-toggle');
             menu.classList.toggle('active');
             toggle.classList.toggle('active');
-        }
+        } /*
         // Placeholder
         window.addEventListener("load", function() {
             document.getElementById("preloader").classList.add("hidden");
@@ -12,7 +12,7 @@
                 document.getElementById("preloader").style.display = "none";
             }, 500);
         });
-        
+        */
         // Theme Toggle
         const themeToggle = document.getElementById("theme-toggle");
         const themeIcon = document.getElementById("theme-icon");
