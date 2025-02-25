@@ -1,0 +1,469 @@
+/* General Styles */
+body {
+  background-image: -moz-linear-gradient(90deg, #1e3b72 0%, #45546e 100%);
+  text-align: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  color: #fff;
+  transition: background 0.5s, color 0.5s;
+}
+
+.light-theme {
+  background-color: #f4f4f4;
+  color: #121212;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(47, 0, 255);
+  font-weight: bold;
+}
+h1 {
+  font-size: 35px;
+}
+/*
+#preloader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+.loader {
+  border: 6px solid #fff;
+  border-top: 6px solid #ffcc00;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+  */
+  
+/* Navbar */
+nav img {
+  max-width: 30px;
+  max-height: 30px;
+}
+button {
+  margin-right: 45px;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: rgb(0, 0, 0);
+  font-size: 24px; /* Adjust size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Makes it circular */
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s ease;
+  padding: 5px;
+  vertical-align: middle;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 100;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+.nav-links.active {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #f39c12;
+}
+
+/* Mobile Navbar */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  left: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+.menu-toggle.active {
+  transform: rotate(90deg);
+}
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: fit-content;
+    transition: transform 0.3s ease-in-out;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 100;
+  }
+  .mainbody {
+    padding-top: 100px;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    text-align: left;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+  .logo {
+    margin-left: 20px; /* Adjusted for mobile */
+  }
+}
+
+/* Responsive Sections */
+section {
+  padding: 80px 30px;
+  text-align: center;
+}
+
+div.aboutme {
+  text-align: justify;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #1e3b72, #45546e);
+  min-height: 50vh;
+  text-align: center;
+}
+
+/* Animations */
+.fade-in {
+  opacity: 10;
+  transform: translateY(30px);
+  transition: opacity 1s, transform 1s;
+}
+
+/* Scroll Animation */
+.hidden {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-up {
+  opacity: 10;
+  transform: translateY(40px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+/*
+.VideoInstructions {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0.2em;
+  grid-auto-rows: 200px, auto;
+}
+
+div.VideoInstructions {
+  text-align: center;
+}
+
+div.VideoInstructions h2 {
+  font-size: 30px;
+}
+
+.VideoInstructions > div {
+  padding-left: 30px;
+  padding-bottom: 10px;
+}
+
+
+video {
+  width: 100%;
+  height: 500px;
+}
+*/
+div.iframe {
+  text-align: center;
+}
+/* Animated Cards */
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.card {
+  width: 300px;
+  padding: 30px;
+  background: #222;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s ease-in-out;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card:hover {
+  transform: scale(1);
+}
+.light-theme .card {
+  width: 300px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(134, 134, 134, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s ease-in-out;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+.light-theme .card:hover {
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
+  }
+  .light-theme .card {
+    width: 90%;
+  }
+  .card:hover {
+    transform: scale(1);
+  }
+  .light-theme .card:hover {
+    transform: scale(1);
+  }
+}
+
+/* Skills Section */
+.skills {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(to right, #000000, #000000);
+}
+.skills h2 {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.skill-card {
+  width: 300px;
+  padding: 30px;
+  background: #222;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+.skill-card:hover {
+  transform: scale(1.1);
+}
+.light-theme .skill-card:hover {
+  transform: scale(1.1);
+}
+.skill-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.light-theme .skills {
+  background: linear-gradient(to right, #ffffff, #ffffff);
+}
+.light-theme .skill-card {
+  width: 300px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(68, 68, 68, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s ease-in-out;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+.progress-bar {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  height: 10px;
+  margin-top: 10px;
+}
+.light-theme .progress-bar{
+  background: #c9c7c7;
+}
+.progress {
+  height: 10px;
+  background: #ffcc00;
+  width: 0;
+  transition: width 5s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .skill-card:hover {
+    transform: scale(1);
+  }
+  .light-theme .skill-card:hover {
+    transform: scale(1);
+  }
+}
+
+/* Parallax Effect */
+.parallax1 {
+  background-image: url("1155075.jpg");
+  /* Change to your image */
+  height: 200px;
+  width: 100%;
+  border-radius: 10px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+}
+.parallax2 {
+  background-image: url("1155075.jpg");
+  /* Change to your image */
+  height: 300px;
+  width: 100%;
+  border-radius: 10px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+}
+.parallax3 {
+  background-image: url("1155075.jpg");
+  /* Change to your image */
+  height: 400px;
+  width: 100%;
+  border-radius: 10px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+}
+.parallax4 {
+  background-image: url("1155075.jpg");
+  /* Change to your image */
+  height: 600px;
+  width: 100%;
+  border-radius: 10px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+}
+.light-theme .parallax1 {
+  background-image: url("02.png");
+}
+.light-theme .parallax2 {
+  background-image: url("02.png");
+}
+.light-theme .parallax3 {
+  background-image: url("02.png");
+}
+.light-theme .parallax4 {
+  background-image: url("02.png");
+}
+@media (max-width: 768px) {
+  .parallax1 {
+    background-image: url("M01.jpg");
+  }
+  .parallax2 {
+    background-image: url("M01.jpg");
+  }
+  .parallax3 {
+    background-image: url("M01.jpg");
+  }
+  .parallax4 {
+    background-image: url("M01.jpg");
+  }
+  .light-theme .parallax1 {
+    background-image: url("M02.jpg");
+  }
+  .light-theme .parallax2 {
+    background-image: url("M02.jpg");
+  }
+  .light-theme .parallax3 {
+    background-image: url("M02.jpg");
+  }
+  .light-theme .parallax4 {
+    background-image: url("M02.jpg");
+  }
+}
