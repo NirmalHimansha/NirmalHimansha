@@ -47,14 +47,14 @@ body {
 }
 .details h1{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 60px;
+    font-size: 50px;
 }
 .details h2{
     font-family:'Courier New', Courier, monospace;
-    font-size: 40px;
+    font-size: 30px;
 }
 .details p{
-    font-size: 20px;
+    font-size: 15px;
     font-weight:bold;
     color: hsla(189, 86%, 77%, 0.733);
 }
