@@ -44,21 +44,27 @@ function initParticles() {
 function animate() {
     requestAnimationFrame(animate);
 
-    // Move particles based on mouse position
+   /**
+     // Move particles based on mouse position
     targetX += (mouseX - targetX) * 0.1;
     targetY += (mouseY - targetY) * 0.1;
 
     particles.position.x = targetX * 4;
     particles.position.y = -targetY * 4;
 
+    **/
+    particles.rotation.y += 0.002;
     renderer.render(scene, camera);
 }
 
-// Track mouse movement
+/**
+ // Track mouse movement
 document.addEventListener("mousemove", (event) => {
     mouseX = (event.clientX / window.innerWidth) * 2 - 1;
     mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
 });
+
+ **/
 
 // Handle screen resizing
 window.addEventListener("resize", () => {
@@ -69,7 +75,9 @@ window.addEventListener("resize", () => {
 
 initParticles();
 
-function isMobile() {
+/**
+ 
+ function isMobile() {
     return /Mobi|Android/i.test(navigator.userAgent);
 }
 
@@ -91,6 +99,8 @@ document.addEventListener("mousemove", (event) => {
         particles.rotation.y = x * 0.2;
     }
 });
+
+ **/
 
 document.getElementById("theme-toggle").addEventListener("click", () => {
     let body = document.body;
