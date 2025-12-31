@@ -142,15 +142,8 @@
         }
 
         @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .hero-content {
@@ -164,7 +157,6 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -260,6 +252,18 @@
             justify-content: center;
             font-size: 3rem;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-image .icon {
+            font-size: 3rem;
         }
 
         .portfolio-info {
@@ -289,6 +293,176 @@
             color: var(--primary);
             border-radius: 20px;
             font-size: 0.8rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: var(--bg-light);
+            border-radius: 20px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text);
+            font-size: 2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-image .icon {
+            font-size: 5rem;
+            color: white;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-body h2 {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .modal-body h2::after {
+            display: none;
+        }
+
+        .modal-description {
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .modal-features {
+            margin-bottom: 2rem;
+        }
+
+        .modal-features h3 {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .modal-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modal-features li {
+            padding: 0.5rem 0;
+            color: var(--text-dim);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .modal-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .modal-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .modal-link {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .modal-link.secondary {
+            background: var(--bg);
+            border: 2px solid var(--primary);
         }
 
         /* Services Grid */
@@ -440,7 +614,6 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -501,6 +674,18 @@
             h2 {
                 font-size: 2rem;
             }
+
+            .modal-content {
+                margin: 1rem;
+            }
+
+            .modal-image {
+                height: 250px;
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -530,86 +715,25 @@
 
     <section id="portfolio">
         <h2>My Portfolio</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <div class="portfolio-image">🎨</div>
-                <div class="portfolio-info">
-                    <h3>E-Commerce Platform</h3>
-                    <p>Modern online shopping experience with seamless checkout</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">MongoDB</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <div class="portfolio-image">📱</div>
-                <div class="portfolio-info">
-                    <h3>Restaurant Website</h3>
-                    <p>Beautiful and responsive design with online reservation system</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">JavaScript</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <div class="portfolio-image">💼</div>
-                <div class="portfolio-info">
-                    <h3>Business Dashboard</h3>
-                    <p>Analytics dashboard with real-time data visualization</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Vue.js</span>
-                        <span class="tag">Chart.js</span>
-                        <span class="tag">API</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <div class="portfolio-image">🏋️</div>
-                <div class="portfolio-info">
-                    <h3>Fitness Tracking App</h3>
-                    <p>Progressive web app for tracking workouts and nutrition</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">PWA</span>
-                        <span class="tag">Firebase</span>
-                        <span class="tag">Charts</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <div class="portfolio-image">🎓</div>
-                <div class="portfolio-info">
-                    <h3>Learning Management System</h3>
-                    <p>Online education platform with course management</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Redux</span>
-                        <span class="tag">Express</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <div class="portfolio-image">🎭</div>
-                <div class="portfolio-info">
-                    <h3>Portfolio Website</h3>
-                    <p>Creative portfolio with smooth animations and transitions</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">GSAP</span>
-                        <span class="tag">Three.js</span>
-                        <span class="tag">WebGL</span>
-                    </div>
-                </div>
-            </div>
+        <div class="portfolio-grid" id="portfolioGrid">
+            <!-- Projects will be dynamically loaded here -->
         </div>
     </section>
+
+    <!-- Project Preview Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-image" id="modalImage"></div>
+            <div class="modal-body">
+                <h2 id="modalTitle"></h2>
+                <p class="modal-description" id="modalDescription"></p>
+                <div class="modal-features" id="modalFeatures"></div>
+                <div class="portfolio-tags" id="modalTags"></div>
+                <div class="modal-links" id="modalLinks" style="margin-top: 2rem;"></div>
+            </div>
+        </div>
+    </div>
 
     <section id="services">
         <h2>Services I Offer</h2>
@@ -678,20 +802,201 @@
 
         <!-- Google Form Embed -->
         <div class="contact-form" id="googleForm" style="display: none;">
-            <p style="text-align: center; color: var(--text-dim); margin-bottom: 1rem;">
-            </p>
             <iframe
                 src="https://docs.google.com/forms/d/e/1FAIpQLSfaZKC3w3I39UTIFfzfLw0ajwpR8RbENxftxOWFKo6zUK9LNg/viewform?embedded=true"
                 width="700" height="700" frameborder="0" marginheight="0" marginwidth="0"></iframe>
         </div>
-
     </section>
 
     <footer>
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
+        <p>&copy; 2024 Nirmal Himansha. All rights reserved.</p>
     </footer>
 
     <script>
+        // ============================================
+        // PROJECT DATA - ADD YOUR PROJECTS HERE
+        // ============================================
+        const projects = [
+            {
+                id: 1,
+                title: "E-Commerce Platform",
+                shortDesc: "Modern online shopping experience with seamless checkout",
+                fullDesc: "A comprehensive e-commerce solution with advanced features including product search, filtering, shopping cart, secure checkout, order tracking, and admin dashboard for inventory management.",
+                icon: "🎨",
+                image: "https://github.com/NirmalHimansha/ECommerceWebSIte/blob/main/Screenshot.jpeg?raw=true",
+                tags: ["React", "Node.js", "MongoDB", "Stripe"],
+                features: [
+                    "User authentication and profile management",
+                    "Advanced product search and filtering",
+                    "Shopping cart with real-time updates",
+                    "Secure payment processing with Stripe",
+                    "Order tracking and history",
+                    "Admin dashboard for inventory management"
+                ],
+                liveUrl: "https://nirmalhimansha.github.io/ECommerceWebSIte/", // Add live demo URL
+                githubUrl: "https://github.com/NirmalHimansha/ECommerceWebSIte", // Add GitHub repository URL
+                caseStudyUrl: "" // Optional: Add case study URL
+            }
+            /**
+            {
+                id: 2,
+                title: "Restaurant Website",
+                shortDesc: "Beautiful and responsive design with online reservation system",
+                fullDesc: "An elegant restaurant website featuring an interactive menu, online table reservation system, photo gallery, and customer reviews integration.",
+                icon: "📱",
+                image: "",
+                tags: ["HTML", "CSS", "JavaScript", "PHP"],
+                features: [
+                    "Interactive menu with filtering by category",
+                    "Online table reservation system",
+                    "Photo gallery with lightbox effect",
+                    "Customer reviews and ratings",
+                    "Contact form with email notifications",
+                    "Fully responsive design"
+                ],
+                liveUrl: "",
+                githubUrl: "",
+                caseStudyUrl: ""
+            },
+            {
+                id: 3,
+                title: "Business Dashboard",
+                shortDesc: "Analytics dashboard with real-time data visualization",
+                fullDesc: "A comprehensive business analytics dashboard featuring real-time data visualization, custom reports, and interactive charts for data-driven decision making.",
+                icon: "💼",
+                image: "",
+                tags: ["Vue.js", "Chart.js", "API", "Firebase"],
+                features: [
+                    "Real-time data visualization",
+                    "Interactive charts and graphs",
+                    "Custom report generation",
+                    "Data export functionality",
+                    "User role management",
+                    "Responsive design for mobile access"
+                ],
+                liveUrl: "",
+                githubUrl: "",
+                caseStudyUrl: ""
+            }
+            // ADD MORE PROJECTS HERE - Just copy the structure above
+            **/
+        ];
+
+        // ============================================
+        // PROJECT RENDERING AND MODAL LOGIC
+        // ============================================
+        
+        function renderProjects() {
+            const grid = document.getElementById('portfolioGrid');
+            grid.innerHTML = '';
+            
+            projects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'portfolio-item';
+                projectCard.onclick = () => openModal(project.id);
+                
+                projectCard.innerHTML = `
+                    <div class="portfolio-image">
+                        ${project.image 
+                            ? `<img src="${project.image}" alt="${project.title}">` 
+                            : `<span class="icon">${project.icon}</span>`
+                        }
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>${project.title}</h3>
+                        <p>${project.shortDesc}</p>
+                        <div class="portfolio-tags">
+                            ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(projectCard);
+            });
+        }
+
+        function openModal(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            const modal = document.getElementById('projectModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalFeatures = document.getElementById('modalFeatures');
+            const modalTags = document.getElementById('modalTags');
+            const modalLinks = document.getElementById('modalLinks');
+            
+            // Set image
+            modalImage.innerHTML = project.image 
+                ? `<img src="${project.image}" alt="${project.title}">` 
+                : `<span class="icon">${project.icon}</span>`;
+            
+            // Set content
+            modalTitle.textContent = project.title;
+            modalDescription.textContent = project.fullDesc;
+            
+            // Set features
+            if (project.features && project.features.length > 0) {
+                modalFeatures.innerHTML = `
+                    <h3>Key Features</h3>
+                    <ul>
+                        ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                `;
+            } else {
+                modalFeatures.innerHTML = '';
+            }
+            
+            // Set tags
+            modalTags.innerHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+            
+            // Set links
+            let linksHTML = '';
+            if (project.liveUrl) {
+                linksHTML += `<a href="${project.liveUrl}" target="_blank" class="modal-link">🌐 View Live Demo</a>`;
+            }
+            if (project.githubUrl) {
+                linksHTML += `<a href="${project.githubUrl}" target="_blank" class="modal-link secondary">⚡ View Code</a>`;
+            }
+            if (project.caseStudyUrl) {
+                linksHTML += `<a href="${project.caseStudyUrl}" target="_blank" class="modal-link secondary">📄 Case Study</a>`;
+            }
+            modalLinks.innerHTML = linksHTML;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Initialize projects on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProjects();
+        });
+
+        // ============================================
+        // EMAIL FORM LOGIC
+        // ============================================
+        
         // EmailJS Configuration - Replace with your own keys
         const EMAILJS_PUBLIC_KEY = '8bwE4r7hV0bvBso77';
         const EMAILJS_SERVICE_ID = 'service_x9j34qg';
@@ -713,7 +1018,6 @@
         function switchForm(type) {
             const customForm = document.getElementById('customForm');
             const googleForm = document.getElementById('googleForm');
-            const emailForm = document.getElementById('emailForm');
             const buttons = document.querySelectorAll('.option-btn');
 
             buttons.forEach(btn => btn.classList.remove('active'));
@@ -721,18 +1025,11 @@
             if (type === 'custom') {
                 customForm.style.display = 'block';
                 googleForm.style.display = 'none';
-                emailForm.style.display = 'none';
                 buttons[0].classList.add('active');
             } else if (type === 'google') {
                 customForm.style.display = 'none';
                 googleForm.style.display = 'block';
-                emailForm.style.display = 'none';
                 buttons[1].classList.add('active');
-            } else if (type === 'email') {
-                customForm.style.display = 'none';
-                googleForm.style.display = 'none';
-                emailForm.style.display = 'block';
-                buttons[2].classList.add('active');
             }
         }
 
@@ -749,7 +1046,7 @@
 
             // Check if EmailJS is configured
             if (typeof emailjs === 'undefined' || EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY_HERE') {
-                showMessage('Please configure EmailJS first. Click "Email Service" tab for instructions.', 'error');
+                showMessage('Please configure EmailJS first.', 'error');
                 return;
             }
 
@@ -795,6 +1092,10 @@
             }, 5000);
         }
 
+        // ============================================
+        // NAVIGATION AND UI LOGIC
+        // ============================================
+        
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
@@ -856,7 +1157,26 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.portfolio-item, .service-card').forEach(item => {
+        // Observe portfolio items as they're added
+        const portfolioObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.classList && node.classList.contains('portfolio-item')) {
+                        node.style.opacity = '0';
+                        node.style.transform = 'translateY(20px)';
+                        node.style.transition = 'all 0.6s ease-out';
+                        observer.observe(node);
+                    }
+                });
+            });
+        });
+
+        portfolioObserver.observe(document.getElementById('portfolioGrid'), {
+            childList: true
+        });
+
+        // Observe service cards
+        document.querySelectorAll('.service-card').forEach(item => {
             item.style.opacity = '0';
             item.style.transform = 'translateY(20px)';
             item.style.transition = 'all 0.6s ease-out';
@@ -864,6 +1184,5 @@
         });
     </script>
 </body>
-
 
 </html>
