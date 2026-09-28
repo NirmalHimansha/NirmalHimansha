@@ -1,199 +1,253 @@
- // Profile Image Scroll Animation
-        const profileImage = document.getElementById('profileImage');
-        const navbarLogo = document.querySelector('.navbar .logo');
+// ===================================
+// Initialize AOS (Animate On Scroll)
+// ===================================
+AOS.init({
+    duration: 1000,
+    easing: 'ease-out-cubic',
+    once: true,
+    offset: 100
+});
+
+// ===================================
+// Navigation Functionality
+// ===================================
+const navbar = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+const navLinks = document.querySelectorAll('.nav-link');
+
+// Sticky navbar on scroll
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Mobile menu toggle
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
+
+// Close mobile menu when clicking on a link
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    });
+});
+
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+
+function highlightNavLink() {
+    const scrollY = window.pageYOffset;
+    
+    sections.forEach(section => {
+        const sectionHeight = section.offsetHeight;
+        const sectionTop = section.offsetTop - 100;
+        const sectionId = section.getAttribute('id');
         
-        window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY > 100;
-            
-            if (scrolled) {
-                profileImage.classList.add('scrolled');
-                if (navbarLogo) navbarLogo.classList.add('hide');
-            } else {
-                profileImage.classList.remove('scrolled');
-                if (navbarLogo) navbarLogo.classList.remove('hide');
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${sectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+}
+
+window.addEventListener('scroll', highlightNavLink);
+
+// ===================================
+// Smooth Scrolling
+// ===================================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        
+        if (target) {
+            const offsetTop = target.offsetTop - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// ===================================
+// Contact Form Handling
+// ===================================
+const contactForm = document.getElementById('contact-form');
+
+// No backend on this site: open the visitor's mail app with the message pre-filled
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const val = id => document.getElementById(id).value.trim();
+    const body = `Name: ${val('name')}\nEmail: ${val('email')}\n\n${val('message')}`;
+    window.location.href = 'mailto:nirmalhimansha@gmail.com'
+        + '?subject=' + encodeURIComponent(val('subject'))
+        + '&body=' + encodeURIComponent(body);
+});
+
+// ===================================
+// Dynamic Text Animation (Optional Enhancement)
+// ===================================
+const heroTagline = document.querySelector('.hero-tagline');
+const roles = [
+    'IT Administrator',
+    'Web Developer',
+    'Technology Enthusiast',
+    'Homelab Enthusiast'
+];
+
+let roleIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typingSpeed = 100;
+
+function typeRole() {
+    const currentRole = roles[roleIndex];
+    
+    if (isDeleting) {
+        heroTagline.textContent = currentRole.substring(0, charIndex - 1);
+        charIndex--;
+        typingSpeed = 50;
+    } else {
+        heroTagline.textContent = currentRole.substring(0, charIndex + 1);
+        charIndex++;
+        typingSpeed = 100;
+    }
+    
+    if (!isDeleting && charIndex === currentRole.length) {
+        // Pause at end
+        typingSpeed = 2000;
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        typingSpeed = 500;
+    }
+    
+    setTimeout(typeRole, typingSpeed);
+}
+
+// Start typing animation after page load
+setTimeout(typeRole, 1000);
+
+// ===================================
+// Parallax Effect for Hero Background
+// ===================================
+const heroBackground = document.querySelector('.hero-background');
+
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallaxSpeed = 0.5;
+    
+    if (heroBackground) {
+        heroBackground.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+    }
+});
+
+// ===================================
+// Cursor Trail Effect (Optional Enhancement)
+// ===================================
+const coords = { x: 0, y: 0 };
+const circles = document.querySelectorAll('.circle');
+
+// Create cursor trail circles
+function createCursorTrail() {
+    for (let i = 0; i < 20; i++) {
+        const circle = document.createElement('div');
+        circle.className = 'circle';
+        document.body.appendChild(circle);
+    }
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .circle {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, hsl(250, 85%, 60%), hsl(320, 80%, 60%));
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 9999;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Uncomment to enable cursor trail
+// createCursorTrail();
+
+// ===================================
+// Skill Cards Tilt Effect
+// ===================================
+const skillCards = document.querySelectorAll('.skill-card');
+
+skillCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+    });
+});
+
+// ===================================
+// Project Cards Hover Effect
+// ===================================
+const projectCards = document.querySelectorAll('.project-card');
+
+projectCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.transition = 'all 0.3s ease';
+    });
+});
+
+// ===================================
+// Loading Animation
+// ===================================
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+    
+    // Add fade-in animation to body
+    const style = document.createElement('style');
+    style.textContent = `
+        body {
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        body.loaded {
+            opacity: 1;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
             }
-        });
-
-        // Menu Toggle
-        function toggleMenu() {
-            const menu = document.querySelector('.nav-links');
-            menu.classList.toggle('active');
         }
-
-        // Theme Toggle
-        function toggleTheme() {
-            document.body.classList.toggle('light-theme');
-            const icon = document.getElementById('theme-icon');
-            icon.textContent = document.body.classList.contains('light-theme') ? '🌙' : '🌞';
-        }
-
-        // Scroll Animation Observer for sections
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                } else {
-                    entry.target.classList.remove('show');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.hidden').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Card Animation Observer - fade in when scrolling down, fade out when scrolling up
-        const cardObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                const cards = entry.target.querySelectorAll('.card, .skill-card');
-                
-                if (entry.isIntersecting) {
-                    cards.forEach(card => {
-                        card.classList.remove('fade-out');
-                        card.classList.add('fade-in');
-                    });
-                } else {
-                    if (entry.boundingClientRect.top > 0) {
-                        cards.forEach(card => {
-                            card.classList.remove('fade-in');
-                            card.classList.add('fade-out');
-                        });
-                    }
-                }
-            });
-        }, { 
-            threshold: 0.2,
-            rootMargin: '-50px'
-        });
-
-        // Observe card containers
-        const projectsSection = document.getElementById('projects');
-        const skillsSection = document.getElementById('skills');
-        
-        if (projectsSection) {
-            cardObserver.observe(projectsSection);
-        }
-        if (skillsSection) {
-            cardObserver.observe(skillsSection);
-        }
-
-        // Progress Bar Animation
-        const progressObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const progressBars = entry.target.querySelectorAll('.progress');
-                    progressBars.forEach(bar => {
-                        const progress = bar.getAttribute('data-progress');
-                        bar.style.width = progress + '%';
-                    });
-                } else {
-                    const progressBars = entry.target.querySelectorAll('.progress');
-                    progressBars.forEach(bar => {
-                        bar.style.width = '0%';
-                    });
-                }
-            });
-        }, { threshold: 0.5 });
-
-        if (skillsSection) {
-            progressObserver.observe(skillsSection);
-        }
-
-        // Three.js 3D Background
-        const canvas = document.getElementById('canvas-3d');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-        
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        camera.position.z = 5;
-
-        // Create particle system
-        const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 1000;
-        const posArray = new Float32Array(particlesCount * 3);
-
-        for (let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 10;
-        }
-
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.02,
-            color: 0x00d4ff,
-            transparent: true,
-            opacity: 0.8
-        });
-
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-
-        // Create floating geometric shapes
-        const geometry1 = new THREE.TorusGeometry(0.7, 0.2, 16, 100);
-        const material1 = new THREE.MeshBasicMaterial({ 
-            color: 0x00d4ff, 
-            wireframe: true,
-            transparent: true,
-            opacity: 0.3
-        });
-        const torus = new THREE.Mesh(geometry1, material1);
-        torus.position.set(-2, 0, -2);
-        scene.add(torus);
-
-        const geometry2 = new THREE.OctahedronGeometry(0.5);
-        const material2 = new THREE.MeshBasicMaterial({ 
-            color: 0x7b2cbf, 
-            wireframe: true,
-            transparent: true,
-            opacity: 0.3
-        });
-        const octahedron = new THREE.Mesh(geometry2, material2);
-        octahedron.position.set(2, 1, -2);
-        scene.add(octahedron);
-
-        // Mouse movement interaction
-        let mouseX = 0;
-        let mouseY = 0;
-
-        document.addEventListener('mousemove', (event) => {
-            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-        });
-
-        // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-
-            particlesMesh.rotation.y += 0.001;
-            particlesMesh.rotation.x += 0.0005;
-
-            torus.rotation.x += 0.01;
-            torus.rotation.y += 0.01;
-            octahedron.rotation.x += 0.02;
-            octahedron.rotation.y += 0.01;
-
-            camera.position.x = mouseX * 0.5;
-            camera.position.y = mouseY * 0.5;
-            camera.lookAt(scene.position);
-
-            renderer.render(scene, camera);
-        }
-
-        animate();
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // Theme change effect on 3D elements
-        document.body.addEventListener('click', (e) => {
-            if (e.target.classList.contains('theme-toggle') || e.target.closest('.theme-toggle')) {
-                const isLight = document.body.classList.contains('light-theme');
-                particlesMaterial.color.setHex(isLight ? 0x7b2cbf : 0x00d4ff);
-            }
-        });
+    `;
+    document.head.appendChild(style);
+});
