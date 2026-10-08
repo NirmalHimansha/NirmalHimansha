@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how to configure robust automated virtual machine and container backups on PVE-OFFICE using ProxData storage and SMART disk health monitoring.">
+    <title>Automating Proxmox Backups with ZFS &amp; vzdump | Nirmal Himansha</title>
+    <link rel="shortcut icon" type="image/png" href="../wolf_4081853.png">
+    <link rel="stylesheet" href="../style.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1824090788378805" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html#home" class="nav-logo">
+                <span class="logo-gradient">Nirmal Himansha</span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="../index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="../Solutions.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="../index.html#blog" class="nav-link active">Blog</a></li>
+                <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="container" style="max-width: 800px;">
+            <div class="blog-badge" style="position: static; display: inline-block; margin-bottom: var(--spacing-md);">Homelab Guide</div>
+            <h1 class="section-title" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; margin-bottom: var(--spacing-md);">
+                Automating Proxmox Backups with ZFS &amp; vzdump
+            </h1>
+            <div class="blog-meta" style="font-size: var(--font-size-sm);">
+                <span><i class="far fa-calendar-alt"></i> October 2026</span>
+                <span><i class="far fa-clock"></i> 5 min read</span>
+                <span><i class="fas fa-user"></i> Nirmal Himansha</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <main class="article-body" style="padding: var(--spacing-2xl) 0 var(--spacing-3xl);">
+        <div class="container" style="max-width: 800px;">
+            <div class="article-content-wrapper" style="color: var(--text-secondary); line-height: 1.8; font-size: var(--font-size-base);">
+                
+                <p style="margin-bottom: var(--spacing-lg); font-size: var(--font-size-lg); color: var(--text-primary);">
+                    Maintaining a reliable backup strategy is the single most important responsibility for any homelab administrator. In a production-like home server environment hosting critical virtual machines and containers, unexpected data loss can spell disaster.
+                </p>
+
+                <h2 style="font-family: var(--font-display); color: var(--text-primary); font-size: var(--font-size-2xl); margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                    1. The Architecture: PVE-OFFICE Setup
+                </h2>
+                <p style="margin-bottom: var(--spacing-md);">
+                    On my primary homelab host, designated as <strong>PVE-OFFICE</strong>, efficiency and fault tolerance are top priorities. The infrastructure leverages Proxmox Virtual Environment's native tools paired with a robust ZFS storage pool framework. ZFS provides enterprise-grade data integrity features, including copy-on-write mechanics, checksum verification, and instant snapshot capabilities.
+                </p>
+                <p style="margin-bottom: var(--spacing-lg);">
+                    However, ZFS snapshots alone do not constitute a complete backup plan because they reside on the same pool layout. To secure actual off-pool redundancy, scheduled backup routines must be established.
+                </p>
+
+                <h2 style="font-family: var(--font-display); color: var(--text-primary); font-size: var(--font-size-2xl); margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                    2. Configuring Scheduled Backups via vzdump
+                </h2>
+                <p style="margin-bottom: var(--spacing-md);">
+                    Proxmox comes built-in with <code>vzdump</code>, a powerful utility that creates consistent backups of containerized environments (LXC) and virtual machines (QEMU/KVM). It supports snapshot, suspend, and stop modes depending on how critical uptime is for each container.
+                </p>
+                <p style="margin-bottom: var(--spacing-md);">
+                    To target the dedicated secondary storage dataset named <strong>ProxData</strong>, you can define automated backup jobs directly from the Proxmox GUI under <strong>Datacenter &gt; Backup &gt; Add</strong>, or configure them via CLI inside the crontab configurations. A standard configuration targets:
+                </p>
+                
+                <ul style="list-style: disc; padding-left: 20px; margin-bottom: var(--spacing-lg);">
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Selection:</strong> All running or stopped production VMs.</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Storage Target:</strong> ProxData storage repository.</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Compression:</strong> ZSTD (Zstandard) for optimal balance of speed and file compression ratio.</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Schedule:</strong> Daily execution during off-peak hours (e.g., 02:00 AM).</li>
+                </ul>
+
+                <h2 style="font-family: var(--font-display); color: var(--text-primary); font-size: var(--font-size-2xl); margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                    3. Monitoring Disk Health with SMART
+                </h2>
+                <p style="margin-bottom: var(--spacing-md);">
+                    Backups are only as reliable as the underlying hardware holding them. Incorporating SMART (Self-Monitoring, Analysis, and Reporting Technology) disk health tracking guarantees that failing drives are identified long before catastrophic block corruption occurs. 
+                </p>
+                <p style="margin-bottom: var(--spacing-lg);">
+                    By pairing automated ZFS scrub schedules with email alerts on PVE-OFFICE, any increase in reallocated sectors or pending sectors triggers immediate diagnostic notifications.
+                </p>
+
+                <h2 style="font-family: var(--font-display); color: var(--text-primary); font-size: var(--font-size-2xl); margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                    Conclusion
+                </h2>
+                <p style="margin-bottom: var(--spacing-lg);">
+                    Setting up a predictable, automated backup workflow on Proxmox takes minimal effort but delivers absolute peace of mind. By making the most of <code>vzdump</code>, ZFS storage tiers, and proactive health monitoring, your homelab remains resilient against hardware failures and configuration errors.
+                </p>
+
+                <div style="background: var(--bg-secondary); padding: var(--spacing-lg); border-radius: var(--border-radius-md); border-left: 4px solid var(--primary-color); margin-top: var(--spacing-2xl);">
+                    <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-xs);">About the Author</h4>
+                    <p style="font-size: var(--font-size-sm); margin-bottom: 0;">
+                        Nirmal Himansha is an IT Administrator and web developer specializing in homelab optimization, self-hosted services, and infrastructure management based in Sri Lanka.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; 2026 Nirmal Himansha. All rights reserved.</p>
+            <p class="footer-text footer-links">
+                <a href="../privacy-policy.html">Privacy Policy</a> |
+                <a href="mailto:nirmalhimansha@gmail.com">Contact Us</a>
+            </p>
+        </div>
+    </body>
+</html>
