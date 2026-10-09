@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Technical documentation and architecture overview of the ASP.NET Core MVC Needle Management System for automated factory sewing lifecycle tracking.">
+    <title>Needle Management System Architecture &amp; Deployment Guide | Nirmal Himansha</title>
+    <link rel="shortcut icon" type="image/png" href="../wolf_4081853.png">
+    <link rel="stylesheet" href="../style.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1824090788378805" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html#home" class="nav-logo">
+                <span class="logo-gradient">Nirmal Himansha</span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="../index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="../Solutions.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="../index.html#blog" class="nav-link active">Blog</a></li>
+                <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="container" style="max-width: 800px;">
+            <div class="blog-badge" style="position: static; display: inline-block; margin-bottom: var(--spacing-md);">Software Engineering</div>
+            <h1 class="section-title" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; margin-bottom: var(--spacing-md);">
+                Needle Management System: Architecture &amp; Enterprise Deployment Guide
+            </h1>
+            <div class="blog-meta" style="font-size: var(--font-size-sm);">
+                <span><i class="far fa-calendar-alt"></i> October 2026</span>
+                <span><i class="far fa-clock"></i> 7 min read</span>
+                <span><i class="fas fa-user"></i> Nirmal Himansha</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <main class="article-body" style="padding: var(--spacing-2xl) 0 var(--spacing-3xl);">
+        <div class="container" style="max-width: 800px;">
+            <div class="article-content-wrapper" style="color: var(--text-secondary); line-height: 1.8; font-size: var(--font-size-base);">
+                
+                <p style="margin-bottom: var(--spacing-lg); font-size: var(--font-size-lg); color: var(--text-primary);">
+                    The Needle Management System is a web-based application built using ASP.NET Core MVC and C#[cite: 7]. Designed for factory environments, it provides a comprehensive solution for tracking the complete lifecycle of sewing needles[cite: 7], replacing cumbersome manual logs with secure, role-based workflows, automated auditing, and integrated reporting[cite: 7].
+                </p>
+
+                <h2 style="font-family: var(--font-display); color: var(--text-primary); font-size: var(--font-size-2xl); margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                    1. System Architecture &amp; Technology Stack
+                </h2>
+                <p style="margin-bottom: var(--spacing-md);">
+                    The application is structured around a classic 3-tier architecture separating the presentation layer, business logic, and database layer[cite: 7]:
+                </p>
+                <ul style="list-style: disc; padding-left: 20px; margin-bottom: var(--spacing-lg);">
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Frontend:</strong> Razor Views powered by Bootstrap 5, interactive JavaScript libraries like Select2 for searchable dropdowns, and Chart.js for real-time analytics[cite: 7].</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Backend:</strong> C# running on .NET 8.0 with ASP.NET Core MVC controllers managing HTTP workflows[cite: 7]. Entity Framework Core acts as the Object-Relational Mapper (ORM), while ASP.NET Core Identity governs role-based security[cite: 7].</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Database:</strong> Microsoft SQL Server managing relational records for users, machines, inventory levels, and transaction states[cite: 7].</li>
+                </ul>
+
+                <h2 style="font-family: var(--font-display); color: var(--text-primary); font-size: var(--font-size-2xl); margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                    2. Core Features &amp; Workflow Logic
+                </h2>
+                <p style="margin-bottom: var(--spacing-md);">
+                    The system introduces robust operational controls tailored for manufacturing facilities:
+                </p>
+                <ul style="list-style: disc; padding-left: 20px; margin-bottom: var(--spacing-lg);">
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Role-Based Access Control (RBAC):</strong> Granular permissions assigned across Super Admin, Admin, Manager, Operator, Stores, and Observer roles[cite: 7].</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Two-Tier Inventory Tracking:</strong> Simultaneously monitors central stores inventory and individual operators' personal hand stock[cite: 7].</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>State-Based Request Workflow:</strong> Tracks needle requests seamlessly through <code style="color: var(--primary-light);">PendingApproval</code>, <code style="color: var(--primary-light);">Approved</code>, and <code style="color: var(--primary-light);">Issued</code> states[cite: 7].</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Webcam Integration:</strong> Allows operators to capture and upload images of broken or blunt needles directly in-browser during request submission[cite: 7].</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Reporting Tools:</strong> Integrates Rotativa for generating official downloadable audit PDFs[cite: 7] alongside Chart.js transaction dashboards[cite: 7].</li>
+                </ul>
+
+                <h2 style="font-family: var(--font-display); color: var(--text-primary); font-size: var(--font-size-2xl); margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                    3. Enterprise IIS Deployment Guide
+                </h2>
+                <p style="margin-bottom: var(--spacing-md);">
+                    Deploying the application to an internal Windows Server requires precise configuration of Internet Information Services (IIS) and the .NET runtime:
+                </p>
+                <ol style="list-style: decimal; padding-left: 20px; margin-bottom: var(--spacing-lg);">
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Server Preparation:</strong> Enable IIS features including management tools, install the ASP.NET Core 8.0 Hosting Bundle, and perform an <code style="color: var(--primary-light);">iisreset</code>[cite: 7].</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Database Setup:</strong> Configure MS SQL Server for Mixed Mode authentication with TCP/IP protocols enabled[cite: 7]. Grant <code style="color: var(--primary-light);">db_owner</code> privileges to the application user account[cite: 7].</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Publishing &amp; IIS Binding:</strong> Publish the project in Release mode from Visual Studio 2022, copy files to <code style="color: var(--primary-light);">C:\inetpub\wwwroot\NeedleSystem</code>, create a new IIS site, and configure its Application Pool to run with <em>"No Managed Code"</em>[cite: 7].</li>
+                </ol>
+
+                <h2 style="font-family: var(--font-display); color: var(--text-primary); font-size: var(--font-size-2xl); margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                    4. Securing Internal Traffic with HTTPS
+                </h2>
+                <p style="margin-bottom: var(--spacing-md);">
+                    To secure communications on a local network, generate a self-signed certificate using PowerShell on the server[cite: 7]:
+                </p>
+
+                <div style="background: var(--bg-secondary); padding: var(--spacing-md); border-radius: var(--border-radius-md); font-family: monospace; font-size: var(--font-size-sm); margin-bottom: var(--spacing-md); overflow-x: auto;">
+                    New-SelfSignedCertificate -DnsName "YOUR-SERVER-NAME" -CertStoreLocation "cert:\LocalMachine\My" -FriendlyName "NeedleSystemCert5Yrs" -NotAfter (Get-Date).AddYears(5)
+                </div>
+
+                <p style="margin-bottom: var(--spacing-lg);">
+                    Export the certificate without the private key, distribute it to client machines, and install it into the <em>Trusted Root Certification Authorities</em> store so users can access the system securely over port 443[cite: 7].
+                </p>
+
+                <div style="background: var(--bg-secondary); padding: var(--spacing-lg); border-radius: var(--border-radius-md); border-left: 4px solid var(--primary-color); margin-top: var(--spacing-2xl);">
+                    <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-xs);">About the Author</h4>
+                    <p style="font-size: var(--font-size-sm); margin-bottom: 0;">
+                        Nirmal Himansha is an IT Administrator and developer specializing in enterprise web applications, Microsoft SQL database infrastructure, and internal server automation.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; 2026 Nirmal Himansha. All rights reserved.</p>
+            <p class="footer-text footer-links">
+                <a href="../privacy-policy.html">Privacy Policy</a> |
+                <a href="mailto:nirmalhimansha@gmail.com">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

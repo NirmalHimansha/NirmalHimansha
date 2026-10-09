@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Technical hardening guide for pfSense firewalls, covering edition selection, AES-NI/QAT crypto offloading, kernel security mitigations, and maintenance protocols.">
+    <title>pfSense Firewall: Edition Selection &amp; Technical Hardening Guide | Nirmal Himansha</title>
+    <link rel="shortcut icon" type="image/png" href="../wolf_4081853.png">
+    <link rel="stylesheet" href="../style.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1824090788378805" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html#home" class="nav-logo">
+                <span class="logo-gradient">Nirmal Himansha</span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="../index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="../Solutions.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="../index.html#blog" class="nav-link active">Blog</a></li>
+                <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="container" style="max-width: 800px;">
+            <div class="blog-badge" style="position: static; display: inline-block; margin-bottom: var(--spacing-md);">Network Security</div>
+            <h1 class="section-title" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; margin-bottom: var(--spacing-md);">
+                pfSense Firewall: Edition Selection &amp; Technical Hardening Guide
+            </h1>
+            <div class="blog-meta" style="font-size: var(--font-size-sm);">
+                <span><i class="far fa-calendar-alt"></i> October 2026</span>
+                <span><i class="far fa-clock"></i> 9 min read</span>
+                <span><i class="fas fa-user"></i> Nirmal Himansha</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <main class="article-body" style="padding: var(--spacing-2xl) 0 var(--spacing-3xl);">
+        <div class="container" style="max-width: 800px;">
+            <div class="article-content-wrapper" style="color: var(--text-secondary); line-height: 1.8; font-size: var(--font-size-base);">
+                
+                <p style="margin-bottom: var(--spacing-lg); font-size: var(--font-size-lg); color: var(--text-primary);">
+                    Deploying a robust edge firewall requires careful consideration of platform features, hardware capabilities, and proactive security hardening. This guide analyzes the capabilities of pfSense Community Edition (CE), compares platform editions, and outlines actionable hardening steps to establish a production-grade security posture[cite: 8].
+                </p>
+
+                <h2 style="font-family: var(--font-display); color: var(--text-primary); font-size: var(--font-size-2xl); margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                    1. Overview of pfSense CE Features &amp; Use Cases
+                </h2>
+                <p style="margin-bottom: var(--spacing-md);">
+                    pfSense CE provides enterprise-grade networking and security tools at zero licensing cost, making it ideal for several key environments[cite: 8]:
+                </p>
+                <ul style="list-style: disc; padding-left: 20px; margin-bottom: var(--spacing-lg);">
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>SMB &amp; Branch Firewalls:</strong> Full-featured packet filtering, NAT, multi-WAN link load balancing, and site-to-site VPN connectivity[cite: 8].</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Advanced Homelabs:</strong> Supports VLAN segmentation, traffic shaping, Quality of Service (QoS), and optional IDS/IPS packages like Snort or Suricata[cite: 8].</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Traffic Monitoring:</strong> Deep network visibility and analytics enabled through packages such as <code style="color: var(--primary-light);">ntopng</code> and <code style="color: var(--primary-light);">Darkstat</code>[cite: 8].</li>
+                </ul>
+
+                <h2 style="font-family: var(--font-display); color: var(--text-primary); font-size: var(--font-size-2xl); margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                    2. Edition Selection: pfSense CE vs. Plus
+                </h2>
+                <p style="margin-bottom: var(--spacing-md);">
+                    Choosing between open-source Community Edition and commercial pfSense Plus involves balancing budget with enterprise requirements[cite: 8]:
+                </p>
+                <ul style="list-style: disc; padding-left: 20px; margin-bottom: var(--spacing-lg);">
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>pfSense CE:</strong> Free, fully open-source Apache 2.0 license, community-driven support, and broad standard hardware compatibility[cite: 8]. Perfect for home labs and small businesses[cite: 8].</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>pfSense Plus:</strong> Commercial subscription with vendor SLAs (TAC), faster update cadences, hardware crypto offload optimizations (e.g., OpenVPN DCO), and cloud marketplace integration[cite: 8].</li>
+                </ul>
+
+                <h2 style="font-family: var(--font-display); color: var(--text-primary); font-size: var(--font-size-2xl); margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                    3. Technical Hardening &amp; Hardware Acceleration
+                </h2>
+                <p style="margin-bottom: var(--spacing-md);">
+                    To elevate a baseline firewall to production-grade security, administrators should activate low-level hardware features and kernel tunables[cite: 8]:
+                </p>
+                
+                <h3 style="color: var(--text-primary); font-size: var(--font-size-lg); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-xs);">Enabling Cryptographic Acceleration</h3>
+                <p style="margin-bottom: var(--spacing-md);">
+                    Offload intensive cryptographic calculations from the main CPU to improve IPsec and TLS throughput[cite: 8]. Navigate to <strong>System &gt; Advanced &gt; Miscellaneous</strong> and select <em>AES-NI CPU-based Acceleration</em> (and Intel QuickAssist if supported)[cite: 8].
+                </p>
+
+                <h3 style="color: var(--text-primary); font-size: var(--font-size-lg); margin-top: var(--spacing-lg); margin-bottom: var(--spacing-xs);">Applying Kernel Security Mitigations</h3>
+                <p style="margin-bottom: var(--spacing-md);">
+                    Protect against speculative execution vulnerabilities (Meltdown, Spectre, and MDS) by adding the following system tunables under <strong>System &gt; Advanced &gt; System Tunables</strong>[cite: 8]:
+                </p>
+                <div style="background: var(--bg-secondary); padding: var(--spacing-md); border-radius: var(--border-radius-md); font-family: monospace; font-size: var(--font-size-sm); margin-bottom: var(--spacing-md); overflow-x: auto;">
+                    vm.pmap.pti = 1 (Enables Page Table Isolation / Meltdown fix)[cite: 8]<br>
+                    hw.spec_store_bypass_disable = 1 (Disables speculative store bypass)[cite: 8]<br>
+                    hw.mds_disable = 1 (Mitigates Microarchitectural Data Sampling)[cite: 8]
+                </div>
+
+                <h2 style="font-family: var(--font-display); color: var(--text-primary); font-size: var(--font-size-2xl); margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                    4. Proactive Maintenance &amp; Incident Response
+                </h2>
+                <p style="margin-bottom: var(--spacing-md);">
+                    Security is an ongoing process requiring disciplined maintenance routines[cite: 8]:
+                </p>
+                <ul style="list-style: disc; padding-left: 20px; margin-bottom: var(--spacing-lg);">
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Firmware &amp; Updates:</strong> Regularly check for system updates and apply CPU microcode patches[cite: 8].</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Log Centralization:</strong> Forward firewall logs to a remote syslog server or SIEM platform for long-term audit retention[cite: 8].</li>
+                    <li style="margin-bottom: var(--spacing-xs);"><strong>Incident Containment:</strong> In the event of suspicious activity, inspect real-time states using <code style="color: var(--primary-light);">pfTop</code> or Darkstat, preserve logs, and export configuration backups before applying mitigation rules[cite: 8].</li>
+                </ul>
+
+                <div style="background: var(--bg-secondary); padding: var(--spacing-lg); border-radius: var(--border-radius-md); border-left: 4px solid var(--primary-color); margin-top: var(--spacing-2xl);">
+                    <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-xs);">About the Author</h4>
+                    <p style="font-size: var(--font-size-sm); margin-bottom: 0;">
+                        Nirmal Himansha is an IT Administrator and network engineer specializing in edge firewall hardening, secure VPN gateways, and resilient homelab infrastructure.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; 2026 Nirmal Himansha. All rights reserved.</p>
+            <p class="footer-text footer-links">
+                <a href="../privacy-policy.html">Privacy Policy</a> |
+                <a href="mailto:nirmalhimansha@gmail.com">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
