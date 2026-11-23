@@ -352,6 +352,7 @@
                 <span class="page-badge">YouTube Data API v3</span>
                 <span class="page-badge">Telegram Notifications</span>
                 <span class="page-badge">Open Source</span>
+                <span class="page-badge">No Login Required</span>
             </div>
             <a href="index.html#contact" class="btn btn-primary">
                 <span>Get In Touch</span>
@@ -363,10 +364,29 @@
     <main class="container" style="padding-top: var(--spacing-2xl); padding-bottom: var(--spacing-3xl);">
         <section class="content-section" data-aos="fade-up">
             <h2>Purpose & Overview</h2>
-            <p><strong>Apocalypse Survival Shorts</strong> is an open-source automation pipeline that creates and publishes daily YouTube Shorts about post-apocalyptic survival scenarios. The system runs entirely on the creator's local hardware (laptop) and uses a combination of local large language models and affordable cloud AI services to generate unique, educational survival content every day without any human intervention.</p>
-            <p>The application serves a single user — the content creator — who operates the pipeline to maintain a YouTube channel focused on survival education. It does <strong>not</strong> collect data from viewers, does not have user accounts, and does not process any personal information from third parties.</p>
+            <div class="compliance-notice" style="background: rgba(0, 180, 0, 0.1); border-color: rgba(0, 180, 0, 0.3); color: #80e880; margin-bottom: var(--spacing-lg);">
+                <strong>🔓 Public Access — No Login Required:</strong> This homepage and the privacy policy are <strong>publicly accessible without any authentication, login, cookies, tracking, or paywall</strong>. Anyone can view these pages at any time at <code>https://www.nirmal.cc/apocalypse-shorts.html</code> and <code>https://www.nirmal.cc/apocalypse-shorts-privacy.html</code>.
+            </div>
+            <p><strong>Apocalypse Survival Shorts</strong> is an <strong>open-source automation pipeline</strong> that creates and publishes <strong>daily YouTube Shorts</strong> about <strong>post-apocalyptic survival scenarios</strong>. The system runs entirely on the creator's local hardware (laptop) and uses a combination of local large language models and affordable cloud AI services to generate unique, educational survival content every day without any human intervention.</p>
+            <p><strong>What this application does:</strong></p>
+            <ul>
+                <li>Generates daily 45-second narration scripts about survival topics (10 rotating themes: Zombie Outbreak, Nuclear Aftermath, Wild Survival, Urban Ruins, Winter Apocalypse, Water Purification, Emergency Communications, Abandoned Bunkers, Wasteland Navigation, Fire Craft)</li>
+                <li>Creates AI-generated video clips using Stable Video Diffusion via Replicate API</li>
+                <li>Stitches intro + AI video + outro into a complete YouTube Short using FFmpeg</li>
+                <li>Uploads the final video to the creator's YouTube channel via YouTube Data API v3 (OAuth 2.0)</li>
+                <li>Sends a private Telegram notification to the creator with the video URL</li>
+            </ul>
+            <p><strong>What this application does NOT do:</strong></p>
+            <ul>
+                <li>Does <strong>not</strong> serve the public — it has no public-facing interface, no user accounts, no registration</li>
+                <li>Does <strong>not</strong> collect data from viewers, website visitors, or any third parties</li>
+                <li>Does <strong>not</strong> process personal information from anyone except the creator's own API credentials</li>
+                <li>Does <strong>not</strong> use analytics, tracking, advertising, or crash reporting services</li>
+                <li>Does <strong>not</strong> generate AI NCII (non-consensual intimate imagery) — content is strictly educational survival material</li>
+            </ul>
+            <p>The application serves a single user — the content creator (Nirmal Himansha) — who operates the pipeline to maintain a YouTube channel focused on survival education.</p>
             <div class="compliance-notice">
-                <strong>Google OAuth Compliance:</strong> This homepage is publicly accessible without authentication. The application name "Apocalypse Survival Shorts" matches exactly the name configured in the Google Cloud Console OAuth consent screen. The privacy policy is available at <a href="apocalypse-shorts-privacy.html">/apocalypse-shorts-privacy.html</a>.
+                <strong>Google OAuth Compliance:</strong> This homepage is publicly accessible without authentication. The application name <strong>"Apocalypse Survival Shorts"</strong> matches exactly the name configured in the Google Cloud Console OAuth consent screen. The privacy policy is available at <a href="apocalypse-shorts-privacy.html">/apocalypse-shorts-privacy.html</a>.
             </div>
         </section>
 
