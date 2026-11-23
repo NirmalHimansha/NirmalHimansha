@@ -1,1188 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Designer & Developer Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #6366f1;
-            --secondary: #8b5cf6;
-            --accent: #ec4899;
-            --bg: #0f172a;
-            --bg-light: #1e293b;
-            --text: #f1f5f9;
-            --text-dim: #94a3b8;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        body.light-mode {
-            --bg: #f8fafc;
-            --bg-light: #ffffff;
-            --text: #0f172a;
-            --text-dim: #475569;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem 5%;
-            z-index: 1000;
-            transition: all 0.3s;
-        }
-
-        body.light-mode nav {
-            background: rgba(248, 250, 252, 0.8);
-        }
-
-        nav.scrolled {
-            padding: 1rem 5%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .theme-toggle {
-            background: var(--bg-light);
-            border: none;
-            color: var(--text);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.05);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1), transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.1), transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .hero-content {
-            max-width: 800px;
-            z-index: 1;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--text-dim);
-            margin-bottom: 2rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 5rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 2px;
-        }
-
-        /* Portfolio Grid */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .portfolio-item {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            background: var(--bg-light);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .portfolio-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .portfolio-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .portfolio-image .icon {
-            font-size: 3rem;
-        }
-
-        .portfolio-info {
-            padding: 1.5rem;
-        }
-
-        .portfolio-info h3 {
-            margin-bottom: 0.5rem;
-            color: var(--text);
-        }
-
-        .portfolio-info p {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-
-        .portfolio-tags {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            padding: 0.3rem 0.8rem;
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 2000;
-            animation: fadeIn 0.3s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .modal-content {
-            background: var(--bg-light);
-            border-radius: 20px;
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideUp 0.3s;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: var(--text);
-            font-size: 2rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            z-index: 10;
-        }
-
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(90deg);
-        }
-
-        .modal-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 20px 20px 0 0;
-            overflow: hidden;
-        }
-
-        .modal-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .modal-image .icon {
-            font-size: 5rem;
-            color: white;
-        }
-
-        .modal-body {
-            padding: 2rem;
-        }
-
-        .modal-body h2 {
-            margin-bottom: 1rem;
-            text-align: left;
-        }
-
-        .modal-body h2::after {
-            display: none;
-        }
-
-        .modal-description {
-            color: var(--text-dim);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .modal-features {
-            margin-bottom: 2rem;
-        }
-
-        .modal-features h3 {
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
-
-        .modal-features ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .modal-features li {
-            padding: 0.5rem 0;
-            color: var(--text-dim);
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .modal-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .modal-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .modal-link {
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .modal-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-        }
-
-        .modal-link.secondary {
-            background: var(--bg);
-            border: 2px solid var(--primary);
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            padding: 2rem;
-            background: var(--bg-light);
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .service-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: var(--text-dim);
-        }
-
-        /* Contact Form */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: var(--bg-light);
-            border: 2px solid transparent;
-            border-radius: 10px;
-            color: var(--text);
-            font-family: inherit;
-            transition: all 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .contact-options {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .option-btn {
-            padding: 0.8rem 1.5rem;
-            background: var(--bg-light);
-            color: var(--text);
-            border: 2px solid transparent;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-
-        .option-btn:hover {
-            border-color: var(--primary);
-        }
-
-        .option-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-
-        .success-message {
-            background: #10b981;
-            color: white;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            text-align: center;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        .error-message {
-            background: #ef4444;
-            color: white;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            text-align: center;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-light);
-            color: var(--text-dim);
-        }
-
-        /* Mobile Menu */
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--bg);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1rem;
-            }
-
-            body.light-mode .nav-links {
-                background: var(--bg-light);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-toggle {
-                display: block;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            .modal-content {
-                margin: 1rem;
-            }
-
-            .modal-image {
-                height: 250px;
-            }
-
-            .modal-body {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    <meta name="description" content="Professional IT services and web development solutions by Nirmal Himansha. Web design, development, maintenance, and e-commerce solutions.">
+    <title>Services & Solutions | Nirmal Himansha</title>
+    <link rel="shortcut icon" type="image/png" href="wolf_4081853.png">
+    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1824090788378805" crossorigin="anonymous"></script>
 </head>
-
 <body>
-    <nav id="navbar">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo">Nirmal Himansha</div>
-            <button class="mobile-toggle" onclick="toggleMobile()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" onclick="closeMenu()">Home</a></li>
-                <li><a href="#portfolio" onclick="closeMenu()">Portfolio</a></li>
-                <li><a href="#services" onclick="closeMenu()">Services</a></li>
-                <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+            <a href="index.html#home" class="nav-logo">
+                <span class="logo-gradient">Nirmal Himansha</span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="index.html#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="Solutions.html" class="nav-link active">Services</a></li>
+                <li class="nav-item"><a href="index.html#blog" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
             </ul>
-            <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
     </nav>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Web Designer & Developer</h1>
-            <p>A passionate homelab enthusiast, self-hosting advocate, and aspiring developer.</p>
-            <a href="#portfolio" class="cta-button">View My Work</a>
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 60vh; padding-top: 120px;">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="container hero-content" data-aos="fade-up">
+            <p class="hero-greeting">Professional Services</p>
+            <h1 class="hero-title">
+                <span class="gradient-text">IT Solutions</span> & Web Development
+            </h1>
+            <p class="hero-description" style="max-width: 700px; margin: 0 auto var(--spacing-xl);">
+                Delivering modern, scalable, and secure technology solutions tailored to your business needs.
+                From custom web applications to infrastructure management.
+            </p>
         </div>
     </section>
 
-    <section id="portfolio">
-        <h2>My Portfolio</h2>
-        <div class="portfolio-grid" id="portfolioGrid">
-            <!-- Projects will be dynamically loaded here -->
+    <!-- Services Section -->
+    <section id="services" class="skills" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Services I Offer</h2>
+                <p class="section-subtitle">Comprehensive technology solutions for your business</p>
+            </div>
+            <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);">
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="skill-name">Web Development</h3>
+                    <p class="skill-description">Custom websites and web applications built with modern technologies (HTML, CSS, JavaScript, PHP, ASP.NET Core). Responsive, accessible, and performant.</p>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="skill-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="skill-name">Web Design</h3>
+                    <p class="skill-description">Beautiful, modern, and user-friendly designs that captivate your audience. UI/UX design, wireframing, prototyping, and design systems.</p>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="skill-name">Responsive Design</h3>
+                    <p class="skill-description">Websites that look perfect on all devices, from mobile to desktop. Mobile-first approach with fluid typography and flexible layouts.</p>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="skill-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3 class="skill-name">Performance Optimization</h3>
+                    <p class="skill-description">Fast-loading websites optimized for search engines and user experience. Core Web Vitals, caching strategies, and asset optimization.</p>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="skill-name">Maintenance & Support</h3>
+                    <p class="skill-description">Ongoing support to keep your website running smoothly. Updates, security patches, monitoring, and 24/7 emergency support.</p>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="350">
+                    <div class="skill-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="skill-name">E-Commerce Solutions</h3>
+                    <p class="skill-description">Complete online store setup with payment integration, inventory management, order processing, and customer dashboards.</p>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <!-- Project Preview Modal -->
-    <div class="modal" id="projectModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <div class="modal-image" id="modalImage"></div>
-            <div class="modal-body">
-                <h2 id="modalTitle"></h2>
-                <p class="modal-description" id="modalDescription"></p>
-                <div class="modal-features" id="modalFeatures"></div>
-                <div class="portfolio-tags" id="modalTags"></div>
-                <div class="modal-links" id="modalLinks" style="margin-top: 2rem;"></div>
+    <!-- Infrastructure & DevOps Section -->
+    <section id="infrastructure" class="skills">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Infrastructure & DevOps</h2>
+                <p class="section-subtitle">Server management, automation, and cloud solutions</p>
             </div>
-        </div>
-    </div>
+            <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);">
 
-    <section id="services">
-        <h2>Services I Offer</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🎨</div>
-                <h3>Web Design</h3>
-                <p>Beautiful, modern, and user-friendly designs that captivate your audience</p>
-            </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="skill-name">Server Administration</h3>
+                    <p class="skill-description">Linux/Windows server setup, configuration, and management. Proxmox VE, Docker, Kubernetes, and virtualization platforms.</p>
+                </div>
 
-            <div class="service-card">
-                <div class="service-icon">💻</div>
-                <h3>Web Development</h3>
-                <p>Custom websites and web applications built with latest technologies</p>
-            </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="skill-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="skill-name">Networking & Security</h3>
+                    <p class="skill-description">Firewall configuration (pfSense/OPNsense), VPN setup, VLAN segmentation, IDS/IPS, and network monitoring.</p>
+                </div>
 
-            <div class="service-card">
-                <div class="service-icon">📱</div>
-                <h3>Responsive Design</h3>
-                <p>Websites that look perfect on all devices, from mobile to desktop</p>
-            </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="skill-name">Database Management</h3>
+                    <p class="skill-description">Microsoft SQL Server, PostgreSQL, MySQL administration. Performance tuning, replication, backup strategies, and migrations.</p>
+                </div>
 
-            <div class="service-card">
-                <div class="service-icon">🚀</div>
-                <h3>Performance Optimization</h3>
-                <p>Fast-loading websites optimized for search engines and user experience</p>
-            </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="skill-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="skill-name">Homelab & Self-Hosting</h3>
+                    <p class="skill-description">Design and implementation of self-hosted services: Home Assistant, Jellyfin, AdGuard, Immich, Pi-hole, and more.</p>
+                </div>
 
-            <div class="service-card">
-                <div class="service-icon">🔧</div>
-                <h3>Maintenance & Support</h3>
-                <p>Ongoing support to keep your website running smoothly</p>
-            </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3 class="skill-name">CI/CD & Automation</h3>
+                    <p class="skill-description">Git workflows, GitHub Actions, automated testing, deployment pipelines, and infrastructure as code (Terraform, Ansible).</p>
+                </div>
 
-            <div class="service-card">
-                <div class="service-icon">🎯</div>
-                <h3>E-Commerce Solutions</h3>
-                <p>Complete online store setup with payment integration</p>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="350">
+                    <div class="skill-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="skill-name">Backup & Disaster Recovery</h3>
+                    <p class="skill-description">ZFS/vzdump backup strategies, off-site replication, SMART monitoring, and business continuity planning.</p>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section id="contact">
-        <h2>Get In Touch</h2>
-        <div class="contact-options">
-            <button class="option-btn active" onclick="switchForm('custom')">Direct Email</button>
-            <button class="option-btn" onclick="switchForm('google')">Google Form</button>
-        </div>
-
-        <!-- Custom Form with EmailJS -->
-        <form class="contact-form" id="customForm" onsubmit="handleCustomSubmit(event)">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
+    <!-- Technologies Section -->
+    <section id="technologies" class="skills" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Technologies & Tools</h2>
+                <p class="section-subtitle">Modern stack for reliable solutions</p>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+            <div class="skills-grid">
+                <div class="skill-card" data-aos="zoom-in" data-aos-delay="50">
+                    <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                    <h3 class="skill-name">HTML5 / CSS3</h3>
+                    <p class="skill-description">Semantic markup, modern layouts</p>
+                </div>
+                <div class="skill-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="skill-icon"><i class="fab fa-js"></i></div>
+                    <h3 class="skill-name">JavaScript / ES6+</h3>
+                    <p class="skill-description">Vanilla JS, modular architecture</p>
+                </div>
+                <div class="skill-card" data-aos="zoom-in" data-aos-delay="150">
+                    <div class="skill-icon"><i class="fab fa-php"></i></div>
+                    <h3 class="skill-name">PHP / Laravel</h3>
+                    <p class="skill-description">Backend APIs, server-side rendering</p>
+                </div>
+                <div class="skill-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="skill-icon"><i class="fab fa-microsoft"></i></div>
+                    <h3 class="skill-name">ASP.NET Core</h3>
+                    <p class="skill-description">Enterprise MVC, Web APIs, EF Core</p>
+                </div>
+                <div class="skill-card" data-aos="zoom-in" data-aos-delay="250">
+                    <div class="skill-icon"><i class="fab fa-linux"></i></div>
+                    <h3 class="skill-name">Linux / Proxmox</h3>
+                    <p class="skill-description">Server admin, virtualization, containers</p>
+                </div>
+                <div class="skill-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="skill-icon"><i class="fab fa-docker"></i></div>
+                    <h3 class="skill-name">Docker / Kubernetes</h3>
+                    <p class="skill-description">Containerization, orchestration</p>
+                </div>
+                <div class="skill-card" data-aos="zoom-in" data-aos-delay="350">
+                    <div class="skill-icon"><i class="fas fa-database"></i></div>
+                    <h3 class="skill-name">SQL Server / PostgreSQL</h3>
+                    <p class="skill-description">Relational databases, optimization</p>
+                </div>
+                <div class="skill-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3 class="skill-name">pfSense / UniFi</h3>
+                    <p class="skill-description">Network security, SDN management</p>
+                </div>
+                <div class="skill-card" data-aos="zoom-in" data-aos-delay="450">
+                    <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                    <h3 class="skill-name">Git / GitHub Actions</h3>
+                    <p class="skill-description">Version control, CI/CD pipelines</p>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
-        </form>
-
-        <!-- Google Form Embed -->
-        <div class="contact-form" id="googleForm" style="display: none;">
-            <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSfaZKC3w3I39UTIFfzfLw0ajwpR8RbENxftxOWFKo6zUK9LNg/viewform?embedded=true"
-                width="700" height="700" frameborder="0" marginheight="0" marginwidth="0"></iframe>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Nirmal Himansha. All rights reserved.</p>
+    <!-- Process Section -->
+    <section id="process" class="skills">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">My Process</h2>
+                <p class="section-subtitle">How we work together to deliver results</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg);">
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="100" style="position: relative; padding-top: 4rem;">
+                    <div style="position: absolute; top: -1.5rem; left: 50%; transform: translateX(-50%); width: 3rem; height: 3rem; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: white;">1</div>
+                    <h3 class="skill-name" style="margin-top: 1rem;">Discovery</h3>
+                    <p class="skill-description">Understanding your requirements, goals, and constraints through detailed consultation.</p>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="200" style="position: relative; padding-top: 4rem;">
+                    <div style="position: absolute; top: -1.5rem; left: 50%; transform: translateX(-50%); width: 3rem; height: 3rem; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: white;">2</div>
+                    <h3 class="skill-name" style="margin-top: 1rem;">Planning</h3>
+                    <p class="skill-description">Architecture design, technology selection, timeline estimation, and project roadmap.</p>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="300" style="position: relative; padding-top: 4rem;">
+                    <div style="position: absolute; top: -1.5rem; left: 50%; transform: translateX(-50%); width: 3rem; height: 3rem; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: white;">3</div>
+                    <h3 class="skill-name" style="margin-top: 1rem;">Development</h3>
+                    <p class="skill-description">Agile development with regular demos, code reviews, and continuous integration.</p>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="400" style="position: relative; padding-top: 4rem;">
+                    <div style="position: absolute; top: -1.5rem; left: 50%; transform: translateX(-50%); width: 3rem; height: 3rem; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: white;">4</div>
+                    <h3 class="skill-name" style="margin-top: 1rem;">Delivery</h3>
+                    <p class="skill-description">Testing, deployment, documentation, training, and ongoing support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="contact" style="padding: var(--spacing-3xl) 0;">
+        <div class="container">
+            <div class="contact-content" data-aos="fade-up">
+                <h2 class="section-title" style="text-align: center; margin-bottom: var(--spacing-md);">Ready to Start Your Project?</h2>
+                <p class="section-subtitle" style="text-align: center; margin-bottom: var(--spacing-xl); max-width: 600px; margin-left: auto; margin-right: auto;">Let's discuss your requirements and build something great together.</p>
+                <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+                    <a href="index.html#contact" class="btn btn-primary">
+                        <span>Get In Touch</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="mailto:nirmalhimansha@gmail.com" class="btn btn-secondary">
+                        <span>Email Directly</span>
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                &copy; 2026 Nirmal Himansha. All rights reserved.
+            </p>
+            <p class="footer-text footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a> |
+                <a href="mailto:nirmalhimansha@gmail.com">Contact Us</a>
+            </p>
+        </div>
     </footer>
 
-    <script>
-        // ============================================
-        // PROJECT DATA - ADD YOUR PROJECTS HERE
-        // ============================================
-        const projects = [
-            {
-                id: 1,
-                title: "E-Commerce Platform",
-                shortDesc: "Modern online shopping experience with seamless checkout",
-                fullDesc: "A comprehensive e-commerce solution with advanced features including product search, filtering, shopping cart, secure checkout, order tracking, and admin dashboard for inventory management.",
-                icon: "🎨",
-                image: "https://github.com/NirmalHimansha/ECommerceWebSIte/blob/main/Screenshot.jpeg?raw=true",
-                tags: ["React", "Node.js", "MongoDB", "Stripe"],
-                features: [
-                    "User authentication and profile management",
-                    "Advanced product search and filtering",
-                    "Shopping cart with real-time updates",
-                    "Secure payment processing with Stripe",
-                    "Order tracking and history",
-                    "Admin dashboard for inventory management"
-                ],
-                liveUrl: "https://nirmalhimansha.github.io/ECommerceWebSIte/", // Add live demo URL
-                githubUrl: "https://github.com/NirmalHimansha/ECommerceWebSIte", // Add GitHub repository URL
-                caseStudyUrl: "" // Optional: Add case study URL
-            }
-            /**
-            {
-                id: 2,
-                title: "Restaurant Website",
-                shortDesc: "Beautiful and responsive design with online reservation system",
-                fullDesc: "An elegant restaurant website featuring an interactive menu, online table reservation system, photo gallery, and customer reviews integration.",
-                icon: "📱",
-                image: "",
-                tags: ["HTML", "CSS", "JavaScript", "PHP"],
-                features: [
-                    "Interactive menu with filtering by category",
-                    "Online table reservation system",
-                    "Photo gallery with lightbox effect",
-                    "Customer reviews and ratings",
-                    "Contact form with email notifications",
-                    "Fully responsive design"
-                ],
-                liveUrl: "",
-                githubUrl: "",
-                caseStudyUrl: ""
-            },
-            {
-                id: 3,
-                title: "Business Dashboard",
-                shortDesc: "Analytics dashboard with real-time data visualization",
-                fullDesc: "A comprehensive business analytics dashboard featuring real-time data visualization, custom reports, and interactive charts for data-driven decision making.",
-                icon: "💼",
-                image: "",
-                tags: ["Vue.js", "Chart.js", "API", "Firebase"],
-                features: [
-                    "Real-time data visualization",
-                    "Interactive charts and graphs",
-                    "Custom report generation",
-                    "Data export functionality",
-                    "User role management",
-                    "Responsive design for mobile access"
-                ],
-                liveUrl: "",
-                githubUrl: "",
-                caseStudyUrl: ""
-            }
-            // ADD MORE PROJECTS HERE - Just copy the structure above
-            **/
-        ];
-
-        // ============================================
-        // PROJECT RENDERING AND MODAL LOGIC
-        // ============================================
-        
-        function renderProjects() {
-            const grid = document.getElementById('portfolioGrid');
-            grid.innerHTML = '';
-            
-            projects.forEach(project => {
-                const projectCard = document.createElement('div');
-                projectCard.className = 'portfolio-item';
-                projectCard.onclick = () => openModal(project.id);
-                
-                projectCard.innerHTML = `
-                    <div class="portfolio-image">
-                        ${project.image 
-                            ? `<img src="${project.image}" alt="${project.title}">` 
-                            : `<span class="icon">${project.icon}</span>`
-                        }
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>${project.title}</h3>
-                        <p>${project.shortDesc}</p>
-                        <div class="portfolio-tags">
-                            ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                        </div>
-                    </div>
-                `;
-                
-                grid.appendChild(projectCard);
-            });
-        }
-
-        function openModal(projectId) {
-            const project = projects.find(p => p.id === projectId);
-            if (!project) return;
-            
-            const modal = document.getElementById('projectModal');
-            const modalImage = document.getElementById('modalImage');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalDescription = document.getElementById('modalDescription');
-            const modalFeatures = document.getElementById('modalFeatures');
-            const modalTags = document.getElementById('modalTags');
-            const modalLinks = document.getElementById('modalLinks');
-            
-            // Set image
-            modalImage.innerHTML = project.image 
-                ? `<img src="${project.image}" alt="${project.title}">` 
-                : `<span class="icon">${project.icon}</span>`;
-            
-            // Set content
-            modalTitle.textContent = project.title;
-            modalDescription.textContent = project.fullDesc;
-            
-            // Set features
-            if (project.features && project.features.length > 0) {
-                modalFeatures.innerHTML = `
-                    <h3>Key Features</h3>
-                    <ul>
-                        ${project.features.map(feature => `<li>${feature}</li>`).join('')}
-                    </ul>
-                `;
-            } else {
-                modalFeatures.innerHTML = '';
-            }
-            
-            // Set tags
-            modalTags.innerHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-            
-            // Set links
-            let linksHTML = '';
-            if (project.liveUrl) {
-                linksHTML += `<a href="${project.liveUrl}" target="_blank" class="modal-link">🌐 View Live Demo</a>`;
-            }
-            if (project.githubUrl) {
-                linksHTML += `<a href="${project.githubUrl}" target="_blank" class="modal-link secondary">⚡ View Code</a>`;
-            }
-            if (project.caseStudyUrl) {
-                linksHTML += `<a href="${project.caseStudyUrl}" target="_blank" class="modal-link secondary">📄 Case Study</a>`;
-            }
-            modalLinks.innerHTML = linksHTML;
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('projectModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal on outside click
-        document.getElementById('projectModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Initialize projects on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            renderProjects();
-        });
-
-        // ============================================
-        // EMAIL FORM LOGIC
-        // ============================================
-        
-        // EmailJS Configuration - Replace with your own keys
-        const EMAILJS_PUBLIC_KEY = '8bwE4r7hV0bvBso77';
-        const EMAILJS_SERVICE_ID = 'service_x9j34qg';
-        const EMAILJS_TEMPLATE_ID = 'template_nuj5w6b';
-
-        // Load EmailJS
-        (function () {
-            const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
-            script.onload = function () {
-                if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY_HERE') {
-                    emailjs.init(EMAILJS_PUBLIC_KEY);
-                }
-            };
-            document.head.appendChild(script);
-        })();
-
-        // Switch between form options
-        function switchForm(type) {
-            const customForm = document.getElementById('customForm');
-            const googleForm = document.getElementById('googleForm');
-            const buttons = document.querySelectorAll('.option-btn');
-
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            if (type === 'custom') {
-                customForm.style.display = 'block';
-                googleForm.style.display = 'none';
-                buttons[0].classList.add('active');
-            } else if (type === 'google') {
-                customForm.style.display = 'none';
-                googleForm.style.display = 'block';
-                buttons[1].classList.add('active');
-            }
-        }
-
-        // Handle custom form submission with EmailJS
-        function handleCustomSubmit(e) {
-            e.preventDefault();
-
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.textContent;
-
-            // Remove any existing messages
-            const existingMsg = document.querySelector('.success-message, .error-message');
-            if (existingMsg) existingMsg.remove();
-
-            // Check if EmailJS is configured
-            if (typeof emailjs === 'undefined' || EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY_HERE') {
-                showMessage('Please configure EmailJS first.', 'error');
-                return;
-            }
-
-            // Disable button and show loading
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-
-            // Get form data
-            const formData = {
-                from_name: document.getElementById('name').value,
-                from_email: document.getElementById('email').value,
-                message: document.getElementById('message').value,
-            };
-
-            // Send email using EmailJS
-            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formData)
-                .then(function (response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    showMessage('Thank you! Your message has been sent successfully.', 'success');
-                    e.target.reset();
-                })
-                .catch(function (error) {
-                    console.log('FAILED...', error);
-                    showMessage('Oops! Something went wrong. Please try again or email me directly.', 'error');
-                })
-                .finally(function () {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalText;
-                });
-        }
-
-        // Show success/error message
-        function showMessage(text, type) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = type === 'success' ? 'success-message' : 'error-message';
-            messageDiv.textContent = text;
-
-            const form = document.getElementById('customForm');
-            form.appendChild(messageDiv);
-
-            setTimeout(() => {
-                messageDiv.remove();
-            }, 5000);
-        }
-
-        // ============================================
-        // NAVIGATION AND UI LOGIC
-        // ============================================
-        
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Theme toggle
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            const theme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
-            localStorage.setItem('theme', theme);
-        }
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-mode');
-        }
-
-        // Mobile menu toggle
-        function toggleMobile() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-
-        function closeMenu() {
-            document.getElementById('navLinks').classList.remove('active');
-        }
-
-        // Portfolio item animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe portfolio items as they're added
-        const portfolioObserver = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                mutation.addedNodes.forEach((node) => {
-                    if (node.classList && node.classList.contains('portfolio-item')) {
-                        node.style.opacity = '0';
-                        node.style.transform = 'translateY(20px)';
-                        node.style.transition = 'all 0.6s ease-out';
-                        observer.observe(node);
-                    }
-                });
-            });
-        });
-
-        portfolioObserver.observe(document.getElementById('portfolioGrid'), {
-            childList: true
-        });
-
-        // Observe service cards
-        document.querySelectorAll('.service-card').forEach(item => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
-            item.style.transition = 'all 0.6s ease-out';
-            observer.observe(item);
-        });
-    </script>
+    <script data-cfasync="false" src="aos.js?v=2"></script>
+    <script data-cfasync="false" src="site.js?v=2"></script>
 </body>
-
 </html>
