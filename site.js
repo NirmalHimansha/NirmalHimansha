@@ -1,19 +1,4 @@
 // ===================================
-// Initialize AOS (Animate On Scroll)
-// ===================================
-if (window.AOS) {
-    AOS.init({
-        duration: 1000,
-        easing: 'ease-out-cubic',
-        once: true,
-        offset: 100
-    });
-} else {
-    // If the animation library fails to load, never leave content hidden
-    document.querySelectorAll('[data-aos]').forEach(el => el.removeAttribute('data-aos'));
-}
-
-// ===================================
 // Navigation Functionality
 // ===================================
 const navbar = document.getElementById('navbar');
@@ -235,24 +220,4 @@ projectCards.forEach(card => {
 // ===================================
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
-    
-    // Add fade-in animation to body
-    const style = document.createElement('style');
-    style.textContent = `
-        body {
-            opacity: 0;
-            animation: fadeIn 0.5s ease forwards;
-        }
-        
-        body.loaded {
-            opacity: 1;
-        }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-    `;
-    document.head.appendChild(style);
 });
